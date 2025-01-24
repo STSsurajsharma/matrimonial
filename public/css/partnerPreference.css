@@ -1,0 +1,181 @@
+body {
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none !important;
+    font-family: Arial, sans-serif;
+    /* gap between the alphabet */
+}
+.profile-card {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #000000;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    position: sticky;
+    top: 10%;
+    width: 100%;
+    max-width: 280px;
+    /* margin: 0 auto; */
+    overflow: hidden;
+    transition: height 0.6s ease, box-shadow 0.3s ease;
+}
+
+.profile-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid green;
+    /* margin-right: 4px; */
+}
+.membership-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center !important;
+    margin-top: -20px;
+}
+.membership-info h5 {
+    font-size: 18px;
+
+}
+.membership-info p {
+    font-weight: 400;
+    color: #1e1e1e;
+    display: flex;
+    align-items: center;
+    font-size: 15px !important;
+  
+}
+
+.details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+.details a {
+    text-decoration: none;
+}
+
+.details.expanded {
+    max-height: 500px;
+}
+
+.expand-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+}
+
+/* css for main */
+
+
+@media (min-width: 768px) {
+    .details {
+        max-height: 500px !important;
+        overflow: visible;
+    }
+
+    .expand-btn {
+        display: none !important;
+    }
+}
+
+/*  */
+@media (max-width: 525px) {
+    .profile-card {
+        width: 100%;
+        max-width: 90%;
+    }
+
+    /* Details section visibility */
+    .profile-based-on-preference .details {
+        max-height: 500px !important;
+        overflow: visible;
+    }
+    
+}
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .profile-activity-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 20px;
+  }
+ 
+
+
+
+
+
+
+
+
+  .info-section {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background: #fafafa;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.info-section h3 {
+    font-size: 18px;
+    color: #4caf50;
+    margin-bottom: 15px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Default single column */
+    gap: 15px;
+}
+
+@media (min-width: 576px) {
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* Two columns for tablets and larger */
+    }
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.label {
+    font-weight: bold;
+    color: #666;
+}
+
+.value {
+    color: #222;
+}
+.blur-text {
+    filter: blur(0.4px);
+}

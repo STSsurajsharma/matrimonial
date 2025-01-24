@@ -1,0 +1,146 @@
+<head>
+    <!-- <link rel="stylesheet" href="../css/activity.css"> -->
+     <link rel="stylesheet" href="../css/partnerPreference.css">
+    <!--  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- TAilwind css cdn -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+</head>
+
+<body>
+    <%- include('./layouts/header', {activePage: 'partnerPreference' }) %>
+
+        <div class="container h-[60px]">
+            <h2 class="text-center mt-5 d-none">Dashboard</h2>
+        </div>
+
+
+        <div class="row g-0">
+            <!-- left aside -->
+            <div class="mt-5 col col-12 col-md-4 parent-card">
+                <div class="profile-card mx-auto shadow">
+                    <button class="btn btn-sm btn-light expand-btn" onclick="toggleDetails()">+</button>
+
+                    <img src="<%= currentUser.profileImage %>" alt="Profile Picture">
+
+                    <div class="info-top ml-4 mt-3">
+                        <h4 class="fs-6">
+                            <%= currentUser.name %> | BDS2025
+                        </h4>
+                        <!-- <p class="btn btn-danger">Upgrade Now !</p>  -->
+                    </div>
+
+                    <div class="membership-info">
+                        <hr>
+                        <h5 class="text-gray-900 fw-1">Memberhsip : Free ?</h5>
+                        <p class="text-gray-900">Loosing many opportunities, Become a Paid member now</p>
+                        <div class="btn btn-success">Get MemberShip Now !</div>
+                    </div>
+                    <!-- Details for the profile -->
+                    <div class="details align-items-start">
+                        <hr>
+                        <a href="/profile">
+                            <p class="text-gray-900"><i class="fa-solid fa-pen-to-square mr-3 text-muted"></i> Edit
+                                Profile</p>
+                        </a>
+                        <a href="/partner-preference">
+                            <p class="text-gray-900"><i class="fa-solid fa-pen-to-square mr-3 text-muted"></i> Edit
+                                Preference</p>
+                        </a> <a href="account-setting">
+                            <p class="text-gray-900"><i class="fa-solid fa-gear mr-3 text-muted"></i> Account setting
+                            </p>
+                               <!-- activity -->
+                        <a href="">
+                            <p class="text-gray-900"><i class="fa-solid fa-chart-line mr-3 text-muted"></i> Profile Activity</p>
+                        </a>
+                        </a> <a href="">
+                            <p class="text-gray-900"><i class="fa-solid fa-circle-info mr-3 text-muted"></i> Help and
+                                Supports</p>
+                        </a>
+                        <!-- <div>
+                        <a href="#" class="text-light me-3"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-instagram"></i></a>
+                    </div> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Main Part -->
+            <div class="main col col-12 col-md-7 mt-5 rounded bg-light border border-light">
+                <div class="profile-activity-container">
+                    <!--  -->
+                    <h1 class="mb-4">Partner Preference</h1>
+
+                    <section class="info-section relative">
+                        <h3>Basic Details <a href="/edit/basic-details/<%= user._id %>"><i
+                                    class="fa-solid fa-pen-to-square ml-[14rem] absolute right-6"></i></a></h3>
+                        <div class="info-grid">
+                            <!-- Name -->
+                            <div class="info-item"><span class="label ">Name:</span><span class="value">
+                                    <%= user.name %>
+                                </span></div>
+                                <!-- date of birth -->
+                                 <div class="info-item"><span class="label ">Date of Birth:</span><span class="value">
+                                    <%= user.dob %>
+                                </span></div>
+                            <!-- Age -->
+                            <div class="info-item"><span class="label">Age:</span><span class="value blur-text">
+                                    <i class="fa-solid fa-lock text-danger"></i>
+                                    <%= user.age %> Years.
+                                </span></div>
+                            <!-- Gender -->
+                            <div class="info-item"><span class="label">Gender:</span><span class="value blur-text">
+                                    <i class="fa-solid fa-lock text-danger"></i>
+                                    <%= user.gender %>
+                                </span></div>
+                            <!-- for whom -->
+                            <div class="info-item"><span class="label">Profile Created For :</span><span class="value">
+                                    <%= user.forWhom %>
+                                </span></div>
+
+                            <!-- city -->
+                            <div class="info-item"><span class="label">City:</span><span class="value">
+                                    <%= user.city %>
+                                </span></div>
+                            <!-- state -->
+                            <div class="info-item"><span class="label">State:</span><span class="value">
+                                    <%= user.stateName %>
+                                </span></div>
+                            <!-- country -->
+                            <div class="info-item"><span class="label">Country:</span><span class="value">
+                                    <%= user.countryName %>
+                                </span></div>
+                            <!-- Home Town -->
+                            <div class="info-item"><span class="label">Home Town:</span><span class="value">
+                                    <%= user.homeTown %>
+                                </span></div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        <script>
+            function toggleDetails() {
+                const details = document.querySelector('.details');
+                const btn = document.querySelector('.expand-btn');
+                const card = document.querySelector('.profile-card');
+
+                if (details.classList.contains('expanded')) {
+                    details.classList.remove('expanded');
+                    btn.textContent = '+';
+                    card.style.boxShadow = 'none';
+                } else {
+                    details.classList.add('expanded');
+                    btn.textContent = '-';
+                    card.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.2)';
+                }
+            }
+        </script>
+</body>

@@ -1,0 +1,271 @@
+<head>
+    <link rel="stylesheet" href="../css/setting.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <%- include('./layouts/header', {activePage : 'none' }) %>
+
+
+
+        <div class="account-settings mt-[4rem]">
+            <!-- Sidebar -->
+            <aside class="settings-menu">
+                <!-- Lefft arrrow icon -->
+
+                <h2> <i class="back-btn fa-solid fa-arrow-left"></i> Account Settings</h2>
+                <!-- Links are here -->
+                <ul>
+                    <li class="menu-item active" data-section="email">Email Settings</li>
+                    <li class="menu-item" data-section="phone">Phone Settings</li>
+                    <li class="menu-item" data-section="password">Password Settings</li>
+                    <li class="menu-item" data-section="privacy">Privacy Settings</li>
+                    <!-- <li class="menu-item" data-section="food">Food Diversity</li> -->
+                </ul>
+            </aside>
+
+            <!-- Content Area -->
+            <div class="settings-content">
+                <!-- emails setting -->
+                <div id="email" class="settings-section hidden active">
+                    <h3>Email Settings</h3>
+                    <form id="emailUpdateForm">
+                        <label for="email">Email Address:</label>
+                        <input type="email" id="email-input" placeholder="" value="<%= user.email %>" name="email">
+                        <button type="submit">Update Email</button>
+                    </form>
+                    <div id="emailMessage" class="mt-3"></div>
+                </div>
+                <!-- Phone number setting -->
+                <div id="phone" class="container mt-5 settings-section hidden">
+                    <div class="card">
+                        <div class="card-header">
+                            Change Mobile Number
+                        </div>
+                        <div class="card-body">
+                            <!-- Change Mobile Form -->
+                            <form id="changeNumberForm">
+                                <div class="mb-3">
+                                    <label for="mobileNumber" class="form-label">Update Mobile Number :</label>
+                                    <input type="number" maxlength="10" class="form-control" id="mobileNumber"
+                                        placeholder="" value="<%= user.phone %>" name="phone">
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Update Number</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OTP Modal -->
+                <div class="modal fade" id="otpModal" tabindex="-1" aria-labelledby="otpModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header bg-success text-white">
+                                <h5 class="modal-title" id="otpModalLabel">Verify OTP</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <!-- modal body -->
+                            <div class="modal-body">
+                                <form id="verifyOtpForm">
+                                    <div class="mb-3">
+                                        <label for="otp" class="form-label">Enter OTP</label>
+                                        <input type="text" class="form-control" id="otp" placeholder="Enter OTP"
+                                            required>
+                                    </div>
+                                    <!-- hidden input -->
+                                    <input type="hidden" id="hiddenMobileNumber">
+                                    <!-- Submit for verification -->
+                                    <button type="submit" class="btn btn-success w-100">Verify OTP</button>
+                                </form>
+                                <div class="mt-3 text-center">
+                                    <!-- Resend otpF -->
+                                    <button id="resendOtpButton" class="btn btn-link resend-disabled" disabled>Resend
+                                        OTP
+                                        (<span id="resendTimer">30</span>s)</button>
+                                    <!-- Alert for the error -->
+                                    <p id="resendLimitMsg" class="text-danger mt-2" style="display: none;">You have
+                                        reached
+                                        the resend limit for this number today.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Success Message -->
+                <div class="verification-success text-center mt-5">
+                    <div class="alert alert-success" role="alert">
+                        <h4 class="alert-heading">Success!</h4>
+                        <p>Your mobile number has been verified and updated.</p>
+                    </div>
+                </div>
+                <!-- Password serring -->
+                <div id="password" class="settings-section hidden">
+                    <h3>Password Settings</h3>
+                    <form id="passwordUpdateForm">
+                        <label for="current-password">Current Password:</label>
+                        <input type="password" id="current-password" name="currentPassword"
+                            placeholder="Enter Your Current Password" required>
+
+                        <label for="new-password">New Password:</label>
+                        <input type="password" id="new-password" name="newPassword" placeholder="Enter new password"
+                            required>
+
+                        <button type="submit">Update Password</button>
+                    </form>
+                    <div id="passwordMessage" class="mt-3"></div>
+
+                </div>
+
+                <!-- privacy setting  -->
+
+                <div id="privacy" class="settings-section hidden">
+                    <h3>Privacy Settings</h3>
+                    <div class="tabs mt-5">
+                        <button class="tab-btn active" data-privacy-tab="phone">Phone Privacy</button>
+                        <button class="tab-btn" data-privacy-tab="photo">Photo Privacy</button>
+                    </div>
+                    <!-- phone privacy -->
+                    <div id="phone-privacy" class="privacy-content active phone-privacy">
+                        <form action="/account-setting/update-phone-privacy/<%= user._id %>" method="post">
+                            <label class="phone-visibility" for="phone-visibility">Who can see your phone
+                                number?</label>
+                            <div>
+                                <input type="radio" id="phone-everyone" name="phonePrivacy" value="paidMembersOnly"
+                                    <%=user.phonePrivacy==='paidMembersOnly' ? 'checked' : '' %>
+                                >
+                                <label for="phone-everyone">All Premium members can view only<span class="default">(by
+                                        default)</span> </label>
+                            </div>
+                            <div>
+                                <input type="radio" id="phone-friends" name="phonePrivacy" value="none"
+                                    <%=user.phonePrivacy==='none' ? 'checked' : '' %>
+                                >
+                                <label for="phone-friends">No one can view my Mobile Number</label>
+                            </div>
+                            <button type="submit">Save Changes</button>
+                        </form>
+                    </div>
+                    <!-- photo privacy -->
+                    <div id="photo-privacy" class="privacy-content photo-privacy">
+                        <form method="post" action="/account-setting/update-photo-privacy/<%= user._id %>">
+                            <label class="photo-heading">Who can see your photos?</label>
+                            <div>
+                                <input type="radio" id="photo-everyone" name="photoPrivacy" value="everyone"
+                                    <%=user.photoPrivacy==='everyone' ? 'checked' : '' %>
+                                >
+                                <label for="photo-everyone">All members can view <span class="default">(by
+                                        default)</span></label>
+                            </div>
+                            <div>
+                                <input type="radio" id="photo-friends" name="photoPrivacy" value="friends"
+                                    <%=user.photoPrivacy==='friends' ? 'checked' : '' %>
+                                >
+                                <label for="photo-friends">All Premium members can view only</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="photo-nobody" name="photoPrivacy" value="nobody"
+                                    <%=user.photoPrivacy==='nobody' ? 'checked' : '' %>
+                                >
+                                <label for="photo-nobody">Accepted Members can view only</label>
+                            </div>
+                            <button type="submit">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../js/setting.js"></script>
+
+        <script>
+            // Email updation 
+
+            document.getElementById('emailUpdateForm').addEventListener('submit', async (event) => {
+                event.preventDefault(); // Prevent the default form submission
+
+                const emailInput = document.getElementById('email-input').value;
+                const messageContainer = document.getElementById('emailMessage');
+
+                try {
+                    const response = await fetch('/account-setting/email-update/<%= user._id %>', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ email: emailInput }),
+                    });
+
+                    const result = await response.json();
+
+                    // Display the message
+                    if (response.status === 200) {
+                        messageContainer.innerHTML = `<div class="alert alert-success">${result.message}</div>`;
+                    } else {
+                        messageContainer.innerHTML = `<div class="alert alert-danger">${result.message}</div>`;
+                    }
+
+                    // Hide the message after 2 seconds
+                    setTimeout(() => {
+                        messageContainer.innerHTML = '';
+                    }, 2000); // 2000 milliseconds = 2 seconds
+
+                } catch (error) {
+                    messageContainer.innerHTML = `<div class="alert alert-danger">An error occurred. Please try again later.</div>`;
+
+                    // Hide the message after 2 seconds
+                    setTimeout(() => {
+                        messageContainer.innerHTML = '';
+                    }, 1500); // 2000 milliseconds = 2 seconds
+                }
+            });
+
+            // password upgradation completed
+            document.getElementById('passwordUpdateForm').addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const currentPassword = document.getElementById('current-password').value;
+                const newPassword = document.getElementById('new-password').value;
+                const messageContainer = document.getElementById('passwordMessage');
+
+                try {
+                    const response = await fetch('/account-setting/change-password/<%= user._id %>', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            userId: '<%= user._id %>', // Replace this with the actual user ID
+                            currentPassword,
+                            newPassword
+                        }),
+                    });
+
+                    const result = await response.json();
+
+                    if (response.status === 200) {
+                        messageContainer.innerHTML = `<div class="alert alert-success">${result.message}</div>`;
+                    } else {
+                        messageContainer.innerHTML = `<div class="alert alert-danger">${result.message}</div>`;
+                    }
+
+                    // Clear the input fields
+                    document.getElementById('current-password').value = '';
+                    document.getElementById('new-password').value = '';
+
+                    // Hide the message after 2 seconds
+                    setTimeout(() => {
+                        messageContainer.innerHTML = '';
+                    }, 2000);
+                } catch (error) {
+                    messageContainer.innerHTML = `<div class="alert alert-danger">An error occurred. Please try again later.</div>`;
+                }
+            });
+
+        </script>
+</body>

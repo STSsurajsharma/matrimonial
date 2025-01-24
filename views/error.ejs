@@ -1,0 +1,19 @@
+<%- include('./layouts/header', {activePage: 'search'}) %>
+
+<section class="flex flex-col items-center justify-center h-screen bg-gray-100 text-gray-800">
+    <div class="text-center">
+        <h1 class="text-6xl font-bold text-red-600">Oops!</h1>
+        <h2 class="text-2xl font-semibold mt-4"><%= message %></h2>
+        <p class="mt-2 text-gray-600">
+            <%= error || "Something went wrong on our end. Please try again later." %>
+        </p>
+        <div class="mt-6">
+            <a href="/" class="px-6 py-3 bg-blue-600 text-white rounded-md shadow hover:bg-blue-700 transition">
+                Go to Home
+            </a>
+            <a href="javascript:history.back()" class="px-6 py-3 bg-gray-600 text-white rounded-md shadow hover:bg-gray-700 transition ml-4">
+                Go Back
+            </a>
+        </div>
+    </div>
+</section>

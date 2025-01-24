@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Interest</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link rel="stylesheet" href="../../css/sendInterest.css">
+</head>
+
+<body>
+    <%- include('../layouts/header') %>
+
+        <div class="container h-[60px]">
+            <h2 class="text-center mt-5 d-none">Dashboard</h2>
+        </div>
+
+
+        <div class="row g-0">
+            <!-- left aside -->
+            <div class="mt-5 col col-12 col-md-4 parent-card">
+                <div class="profile-card mx-auto shadow">
+                    <button class="btn btn-sm btn-light expand-btn" onclick="toggleDetails()">+</button>
+
+                    <img src="<%= currentUser.profileImage %>" alt="Profile Picture">
+
+                    <div class="info-top ml-4 mt-3">
+                        <h4 class="fs-6">
+                            <%= currentUser.name %> | BDS2025
+                        </h4>
+                        <!-- <p class="btn btn-danger">Upgrade Now !</p>  -->
+                    </div>
+
+                    <div class="membership-info">
+                        <hr>
+                        <h5 class="text-gray-900 fw-1">Memberhsip : Free ?</h5>
+                        <p class="text-gray-900">Loosing many opportunities, Become a Paid member now</p>
+                        <div class="btn btn-success">Get MemberShip Now !</div>
+                    </div>
+                    <!-- Details for the profile -->
+                    <div class="details align-items-start">
+                        <hr>
+                        <a href="/profile">
+                            <p class="text-gray-900"><i class="fa-solid fa-pen-to-square mr-3 text-muted"></i> Edit
+                                Profile</p>
+                        </a>
+                        <a href="/partner-preference">
+                            <p class="text-gray-900"><i class="fa-solid fa-pen-to-square mr-3 text-muted"></i> Edit
+                                Preference</p>
+                        </a> <a href="account-setting">
+                            <p class="text-gray-900"><i class="fa-solid fa-gear mr-3 text-muted"></i> Account setting
+                            </p>
+                            <!-- activity -->
+                            <a href="">
+                                <p class="text-gray-900"><i class="fa-solid fa-chart-line mr-3 text-muted"></i> Profile
+                                    Activity</p>
+                            </a>
+                        </a> <a href="">
+                            <p class="text-gray-900"><i class="fa-solid fa-circle-info mr-3 text-muted"></i> Help and
+                                Supports</p>
+                        </a>
+                        <!-- <div>
+                        <a href="#" class="text-light me-3"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-light me-3"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-light"><i class="fab fa-instagram"></i></a>
+                    </div> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Main Part -->
+            <div class="main col col-12 col-md-7 mt-5 rounded bg-light border border-light">
+                <div class="container mt-4">
+                    <!-- Sent interest -->
+                    <h1 class="text-center mb-4">Send Interest</h1>
+
+                    <div class="nav nav-pills justify-content-center mb-4" id="pills-tab" role="tablist">
+                        <button class="nav-link active" id="pills-sent-by-me-tab" data-bs-toggle="pill"
+                            data-bs-target="#sent-by-me" type="button" role="tab" aria-controls="sent-by-me"
+                            aria-selected="true">Sent by Me</button>
+                        <button class="nav-link" id="pills-sent-by-others-tab" data-bs-toggle="pill"
+                            data-bs-target="#sent-by-others" type="button" role="tab" aria-controls="sent-by-others"
+                            aria-selected="false">Sent by Others</button>
+                    </div>
+
+                    <div class="tab-content" id="pills-tabContent">
+                        <!-- Sent by Me Section -->
+                        <div class="tab-pane fade show active" id="sent-by-me" role="tabpanel"
+                            aria-labelledby="pills-sent-by-me-tab">
+                            <h2>Sent by Me</h2>
+                            <% sentRequests.forEach(request=> { %>
+                                <div class="card mb-3" id="request-<%= request.userId._id %>">
+                                    <div class="row g-0">
+                                        <div class="col-md-2">
+                                            <img src="<%= request.userId.profileImage %>" alt="User 1"
+                                                class="img-fluid border border-danger">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    <%= request.userId.name %>
+                                                </h5>
+                                                <p class="card-text">
+                                                    <%= request.userId.age %>
+                                                </p>
+                                                <p class="card-text">
+                                                    <%= request.userId.occupation %>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 d-flex align-items-center">
+                                            <button class="btn btn-danger p-2"
+                                                onclick="cancelInterest('<%= request.userId._id %>')">Cancel
+                                                Interest</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% }) %>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Sent by Others Section -->
+                <div class="tab-pane fade" id="sent-by-others" role="tabpanel"
+                    aria-labelledby="pills-sent-by-others-tab">
+                    <h2>Sent by Others</h2>
+                    <!-- Cards shown dynamicaly -->
+                    <% receivedRequests.forEach(request=> { %>
+                        <% if (request.status==='pending' ) { %>
+                            <div class="card mb-3" id="received-<%= request.userId._id %>">
+                                <div class="row g-0">
+                                    <div class="col-md-2">
+                                        <img src="<%= request.userId.profileImage %>" alt="User 3" class="img-fluid">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <%= request.userId.name %>
+                                            </h5>
+                                            <p class="card-text">
+                                                <%= request.userId.age %>
+                                            </p>
+                                            <p class="card-text">
+                                                <%= request.userId.occupation %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2 d-flex align-items-center">
+                                        <div>
+                                            <button class="btn btn-success mb-2"
+                                                onclick="acceptInterest('<%= request.userId._id %>')">
+                                                Accept Interest
+                                            </button>
+                                            <button class="btn btn-danger">Reject Interest</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                                <% }) %>
+
+
+                </div>
+
+            </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            // for cancel interest
+            async function cancelInterest(requestId) {
+                try {
+                    console.log(requestId);
+                    const response = await fetch(`/profile-activity/cancel-interest/${requestId}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                    });
+
+                    const data = await response.json();
+                    if (data.success) {
+                        alert('Interest canceled successfully.');
+                        // Optionally, remove the card from the DOM
+                        document.getElementById(`request-${requestId}`).remove();
+                    } else {
+                        alert('Failed to cancel interest.');
+                    }
+                } catch (error) {
+                    console.error(error);
+                    alert('An error occurred. Please try again.');
+                }
+            }
+            //   for accept requrest
+            async function acceptInterest(requestId) {
+                try {
+                    const response = await fetch(`/profile-activity/accept-interest/${requestId}`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                    });
+
+                    const data = await response.json();
+                    if (data.success) {
+                        alert('Interest accepted successfully.');
+                        // Remove the card from the DOM
+                        const cardElement = document.getElementById(`received-${requestId}`);
+                        if (cardElement) {
+                            cardElement.remove();
+                        }
+                    } else {
+                        alert('Failed to accept interest.');
+                    }
+                } catch (error) {
+                    console.error(error);
+                    alert('An error occurred. Please try again.');
+                }
+            }
+        </script>
+
+</body>
+
+</html>

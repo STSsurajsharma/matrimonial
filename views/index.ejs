@@ -1,0 +1,1279 @@
+<head>
+    <!-- Style sheets -->
+    <link rel="stylesheet" href="../css/index.css">
+    <style>
+        .exception-input {
+            display: none;
+            border-radius: 5px;
+            border: 1px solid red;
+            transition: 0.3s ease-in-out;
+        }
+
+        input.error {
+            border: 1px solid red;
+        }
+
+        input.success {
+            border: 1px solid green;
+
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header">
+        <!-- Logo -->
+        <nav class="container-sm nav absolute top-0 w-full justify-between items-center ">
+            <div class="logo">
+                <a class="justify-start fs-4 fw-light " href="">Bengali Drream <span
+                        class="text-danger fw-semibold">Shathi</span></a>
+            </div>
+            <!-- Links For Navigation  -->
+            <div class="navbar">
+                <ul class="flex flex-row items-center">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><span class="fs-5 text-white fw-light">New ? </span><span
+                                class="ml-1 px-2 py-2 rounded btn btn-outline-success">Register Now !</span></a>
+                    </li>
+                    <li class="fw-light">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+                    </li>
+
+                    <!-- Modal -->
+                    <div class="modal fade mt-[4rem]" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <!-- Modals Header -->
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-primary" id="loginModalLabel">Login</h5>
+                                    <!-- Close Buttons -->
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <!-- modal body -->
+                                <div class="modal-body">
+                                    <form id="loginForm" action="/login-from-home" method="post">
+                                        <div class="mb-3">
+                                            <!-- <label for="email" class="form-label">Email address</label> -->
+                                            <input type="email" class="form-control" id="email"
+                                                placeholder="Enter your email" required>
+                                            <div id="emailError" class="text-danger"></div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <!-- <label for="password" class="form-label">Password</label> -->
+                                            <input type="password" class="form-control" id="password"
+                                                placeholder="Enter your password" required>
+                                            <div id="passwordError" class="text-danger"></div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary w-100">Login</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ul>
+            </div>
+        </nav>
+        <!-- hero Section -->
+        <div class="container-sm text-center mt-[3rem] ">
+            <div class="row">
+                <!-- Left -->
+                <div id="left-content"
+                    class="col col-10 col-sm-10 col-md-4 col-lg-6  d-flex justify-content-center mx-auto flex-col d-flex items-center">
+                    <h1 class=" fs-1">India's No.1 Bengali Matrimonial Website</h1>
+                    <p class="mt-3 fs-4 fw-light">Find Your Perfect Shathi With Our Supports.
+                    </p>
+                    <a id="clickToDisplayForm" class="btn btn-primary py-2 px-4 mt-4 text-[20px]">Get Started Now !</a>
+                </div>
+
+                <!-- Right -->
+                <div id="form-div"
+                    class="col form-container col-md-4 col-lg-4 col-10 col-sm-8  text-black rounded d-flex justify-content-center mx-auto d-none form-content">
+                    <!-- Form -->
+                    <form id="multiStepForm" enctype="multipart/form-data" class="form">
+
+                        <!-- Basic Info -->
+                        <div class="form-section active" id="basicInfo">
+                            <h2>Basic Information</h2>
+                            <!-- For Whom -->
+                            <div class="form-group my-3">
+                                <select class="form-select" id="forWhom" name="forWhom">
+                                    <option value="null" selected hidden>Profile created for</option>
+                                    <option value="My Self">My Self</option>
+                                    <option value="Son">Son</option>
+                                    <option value="Daughter">Daughter</option>
+                                </select>
+                                <label for="floatingSelect">Profile created for<span class="text-red-500">*</span>
+                                </label>
+                                <div class="error" id="forWhomError"></div>
+                            </div>
+                            <!-- Name -->
+                            <div class="form-group mt-4">
+                                <input type="text" id="name" name="name" placeholder=" ">
+                                <label for="name">Groom/Bridge Name <span class="text-red-500">*</span></label>
+                                <div class="error" id="nameError"></div>
+                            </div>
+                            <!-- Gender -->
+                            <div class="form-groups my-3">
+                                <select class="form-select" id="gender" name="gender">
+                                    <option value="" selected hidden>Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                                <label for="floatingSelect">Gender <span class="text-red-500">*</span></label>
+                                <div class="error" id="genderError"></div>
+                            </div>
+                            <!-- Date of Birth -->
+                            <div class="form-groups my-3">
+                                <input type="date" class="form-select" id="dob" name="dob">
+                                <label for="dob">Date of Birth <span class="text-red-500">*</span></label>
+                                <div class="error" id="dobError"></div>
+                            </div>
+                        </div>
+                        <!-- Personal Details -->
+                        <div class="form-section" id="castDetails">
+                            <h2>Personal Details</h2>
+
+                            <!-- Div For Religion -->
+                            <div class="d-flex flex-row justify-between gap-3 mt-3 mb-0">
+                                <!--hidden Religion -->
+                                <input type="hidden" id="hiddenReligion" name="religionName">
+                                <!-- religion -->
+                                <div class="col-md-3 w-1/2 form-groups">
+                                    <select id="religion" name="religion" class="form-select" required>
+                                        <option value=""> Religion</option>
+                                    </select>
+                                    <label for="floatingSelect">Religion <span class="text-red-500">*</span></label>
+                                    <div class="error" id="religionError"></div>
+                                </div>
+                                <!-- Caste -->
+                                <div class="col-md-3 w-1/2 form-groups">
+                                    <select id="caste" name="caste" class="form-select" required>
+                                        <option value="" disabled selected>-- Select --</option>
+                                    </select>
+                                    <label for="floatingSelect">Caste <span class="text-red-500">*</span></label>
+                                    <div class="error" id="casteError"></div>
+                                </div>
+                            </div>
+                            <!-- Height -->
+                            <div class=" form-groups">
+                                <select class="form-select" id="Height" name="height" required>
+                                    <option value="">Select Height</option>
+                                </select>
+                                <label for="floatingSelect">Select Height <span class="text-red-500">*</span></label>
+                                <div class="error" id="HeightError"></div>
+
+                            </div>
+
+                            <!-- Disability -->
+                            <div class="form-groups my-3">
+                                <select class="form-select" id="disability" value="" name="disability">
+                                    <option value="" selected hidden>Disability</option>
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                </select>
+                                <label for="floatingSelect">Disability <span class="text-red-500">*</span></label>
+                                <div class="error" id="disabilityError"></div>
+                            </div>
+                            <!-- marital status -->
+                            <div class="form-groups my-3">
+                                <select class="form-select" id="maritalStatus" value="" name="maritalStatus" required>
+                                    <option value="" selected hidden>Marital Status</option>
+                                    <option value="Never Married">Never Married</option>
+                                    <option value="Divorced">Divorced</option>
+                                    <option value="Waiting for Divorced">Waiting for Divorced</option>
+                                    <option value="Widowed">Widowed</option>
+                                </select>
+                                <label for="floatingSelect">Marital Status <span class="text-red-500">*</span></label>
+                                <div class="error" id="maritalStatusError"></div>
+                            </div>
+                            <!-- MotherTongue -->
+                            <div class="form-groups my-3">
+                                <select class="form-select" id="motherTongue" value="" name="motherTongue">
+                                    <option value="" selected hidden>Mother Tongue</option>
+                                    <option value="English">English</option>
+                                    <option value="Hindi">Hindi</option>
+                                    <option value="Marathi">Marathi</option>
+                                    <option value="Tamil">Tamil</option>
+                                    <option value="Telugu">Telugu</option>
+                                    <option value="Gujarati">Gujarati</option>
+                                    <option value="Kannada">Kannada</option>
+                                    <option value="Malayalam">Malayalam</option>
+                                    <option value="Bengali">Bengali</option>
+                                    <option value="Oriya">Oriya</option>
+                                    <option value="Punjabi">Punjabi</option>
+                                    <option value="Sindhi">Sindhi</option>
+                                </select>
+                                <label for="floatingSelect">Mother Tongue <span class="text-red-500">*</span></label>
+                                <div class="error" id="motherTongueError"></div>
+                            </div>
+                            <!-- Eating habit  -->
+                            <div class="form-groups mb-3">
+                                <select class="form-select" id="eatinhHabits" name="eatinhHabits">
+                                    <option value="" selected hidden>Eating Habits</option>
+                                    <option value="Veg">Veg</option>
+                                    <option value="Non-Veg">Non-Veg</option>
+                                </select>
+                                <label for="floatingSelect">Eating Habits</label>
+                                <div class="error" id="eatinhHabitsError"></div>
+                            </div>
+                            <!-- Div for Drinking and smoking habbit -->
+                            <div class="d-flex flex-row justify-between gap-3 mt-0">
+                                <!--  Drinking habbits-->
+                                <div class="form-groups w-1/2">
+                                    <select class="form-select" id="drinkingHabits" name="drinkingHabits">
+                                        <option value="" selected hidden>Drinking Habits</option>
+                                        <option value="Regular">Regular</option>
+                                        <option value="Occationally">Occationally</option>
+                                        <option value="No Smoking">No Drinking</option>
+                                    </select>
+                                    <label for="floatingSelect">Drinking Habits</label>
+                                    <div class="error" id="drinkingHabitsError">
+                                    </div>
+                                </div>
+                                <!-- Soking habbit -->
+                                <div class="form-groups w-1/2">
+                                    <select class="form-select" id="smokingHabits" name="smokingHabits">
+                                        <option value="" selected hidden>Smoking Habits</option>
+                                        <option value="Regular">Regular</option>
+                                        <option value="Occationally">Occationally</option>
+                                        <option value="No Smoking">No Smoking</option>
+                                    </select>
+                                    <label for="floatingSelect">Smoking Habits</label>
+                                    <div class="error" id="smokingHabitsError">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- Education Details -->
+                        <div class="form-section" id="educationDetails">
+                            <h2>Education Details</h2>
+                            <!-- heigher qualificatoin -->
+                            <div class="form-groups my-3">
+                                <select class="form-select" id="heigherQualification" name="heigherQualification">
+                                    <option value="null" selected hidden>Heigher Qualification</option>
+                                    <option value="Heigher secondary/Below Heigher">Heigher secondary/Below
+                                        Heigher
+                                    </option>
+                                    <!-- 1st group -->
+                                    <optgroup label="-- Any Bachelors in Engineering / Computers --">
+                                        <option value="aeronautical-engineering">Aeronautical Engineering
+                                        </option>
+                                        <option value="b-arch">B.Arch</option>
+                                        <option value="bca">BCA</option>
+                                        <option value="be">BE</option>
+                                        <option value="b-plan">B.Plan</option>
+                                        <option value="bsc-it-computer-science">B.Sc IT/ Computer Science
+                                        </option>
+                                        <option value="b-tech">B.Tech.</option>
+                                        <option value="other-bachelors-engineering-computers">Other Bachelor
+                                            Degree in
+                                            Engineering / Computers</option>
+                                        <option value="bs-engineering">B.S.(Engineering)</option>
+                                    </optgroup>
+                                    <!-- 2nd -->
+                                    <optgroup label="-- Any Masters in Engineering / Computers --">
+                                        <option value="m-arch">M.Arch.</option>
+                                        <option value="mca">MCA</option>
+                                        <option value="me">ME</option>
+                                        <option value="msc-it-computer-science">M.Sc. IT / Computer Science
+                                        </option>
+                                        <option value="ms-engg">M.S.(Engg.)</option>
+                                        <option value="m-tech">M.Tech.</option>
+                                        <option value="pgdca">PGDCA</option>
+                                        <option value="other-masters-engineering-computers">Other Masters Degree
+                                            in
+                                            Engineering / Computers</option>
+                                    </optgroup>
+                                    <!-- /3rd  -->
+                                    <optgroup label="-- Any Bachelors in Arts / Science / Commerce --">
+                                        <option value="aviation-degree">Aviation Degree</option>
+                                        <option value="ba">B.A.</option>
+                                        <option value="bcom">B.Com.</option>
+                                        <option value="b-ed">B.Ed.</option>
+                                        <option value="bfa">BFA</option>
+                                        <option value="bft">BFT</option>
+                                        <option value="blis">BLIS</option>
+                                        <option value="bmm">B.M.M.</option>
+                                        <option value="bsc">B.Sc.</option>
+                                        <option value="B.S.W">B.S.W</option>
+                                        <option value="B.Phil.">B.Phil.</option>
+                                        <option value="Other Bachelor Degree in Arts / Science / Commerce">Other
+                                            Bachelor Degree in Arts / Science / Commerce</option>
+                                    </optgroup>
+                                    <!-- 4th -->
+                                    <optgroup label="-- Any Masters in Arts / Science / Commerce --">
+                                        <option value="M.A.">M.A.</option>
+                                        <option value="MCom">MCom</option>
+                                        <option value="M.Ed.">M.Ed.</option>
+                                        <option value="MFA">MFA</option>
+                                        <option value="MLIS">MLIS</option>
+                                        <option value="M.Sc.">M.Sc.</option>
+                                        <option value="MSW">MSW</option>
+                                        <option value="M.Phil.">M.Phil.</option>
+                                        <option value="Other Master Degree in Arts / Science / Commerce">Other
+                                            Master
+                                            Degree in Arts / Science / Commerce</option>
+                                    </optgroup>
+                                    <!-- 5th -->
+                                    <optgroup label="-- Any Bachelors in Management --">
+                                        <option value="BBA">BBA</option>
+                                        <option value="BFM (Financial Management)">BFM (Financial Management)
+                                        </option>
+                                        <option value="BHM (Hotel Management)">BHM (Hotel Management)</option>
+                                        <option value="Other Bachelor Degree in Management">Other Bachelor
+                                            Degree in
+                                            Management</option>
+                                        <option value="BHA / BHM (Hospital Administration)">BHA / BHM (Hospital
+                                            Administration)</option>
+                                        <!--6th -->
+                                    </optgroup>
+                                    <optgroup label="-- Any Masters in Management --">
+                                        <option value="MBA">MBA</option>
+                                        <option value="MFM (Financial Management)">MFM (Financial Management)
+                                        </option>
+                                        <option value="MHM  (Hotel Management)">MHM (Hotel Management)</option>
+                                        <option value="MHRM (Human Resource Management)">MHRM (Human Resource
+                                            Management)</option>
+                                        <option value="PGDM">PGDM</option>
+                                        <option value="Other Master Degree in Management">Other Master Degree in
+                                            Management</option>
+                                        <option value="MHA / MHM (Hospital Administration)">MHA / MHM (Hospital
+                                            Administration)</option>
+                                    </optgroup>
+                                    <!-- 7th -->
+                                    <optgroup label="-- Any Bachelors in Medicine in General / Dental / Surgeon --">
+                                        <option value="B.A.M.S.">B.A.M.S.</option>
+                                        <option value="BDS">BDS</option>
+                                        <option value="BHMS">BHMS</option>
+                                        <option value="BSMS">BSMS</option>
+                                        <option value="BUMS">BUMS</option>
+                                        <option value="BVSc">BVSc</option>
+                                        <option value="MBBS">MBBS</option>
+                                    </optgroup>
+                                    <!-- 8th -->
+                                    <optgroup label="Medicine">
+                                        <option value="MVSc">MVSc</option>
+                                        <option value="MCh">MCh</option>
+                                        <option value="DNB">DNB</option>
+                                        <option value="BPharm">BPharm</option>
+                                        <option value="BPT">BPT</option>
+                                        <option value="B.Sc. Nursing">B.Sc. Nursing</option>
+                                        <option value="Other Bachelor Degree in Medicine">Other Bachelor Degree
+                                            in
+                                            Medicine</option>
+                                        <option value="M.Pharm">M.Pharm</option>
+                                        <option value="MPT">MPT</option>
+                                        <option value="Other Master Degree in Medicine">Other Master Degree in
+                                            Medicine
+                                        </option>
+                                    </optgroup>
+                                    <!-- 9th -->
+                                    <optgroup label="Legal">
+                                        <option value="BGL">BGL</option>
+                                        <option value="B.L.">B.L.</option>
+                                        <option value="LL.B.">LL.B.</option>
+                                        <option value="Other Bachelor Degree in Legal">Other Bachelor Degree in
+                                            Legal
+                                        </option>
+                                        <option value="LL.M.">LL.M.</option>
+                                        <option value="M.L.">M.L.</option>
+                                        <option value="Other Master Degree in Legal">Other Master Degree in
+                                            Legal
+                                        </option>
+                                    </optgroup>
+                                    <!-- 10th -->
+                                    <optgroup label="Finance">
+                                        <option value="CA">CA</option>
+                                        <option value="CFA">CFA (Chartered Financial Analyst)</option>
+                                        <option value="CS">CS</option>
+                                        <option value="ICWA">ICWA</option>
+                                        <option value="Other Degree in Finance">Other Degree in Finance</option>
+                                    </optgroup>
+                                    <!-- 11th -->
+                                    <optgroup label="Services">
+                                        <option value="IAS">IAS</option>
+                                        <option value="IES">IES</option>
+                                        <option value="IFS">IFS</option>
+                                        <option value="IRS">IRS</option>
+                                        <option value="IPS">IPS</option>
+                                        <option value="Other Degree in Service">Other Degree in Service</option>
+                                    </optgroup>
+                                    <!-- 12 -->
+                                    <optgroup label="Doctorates">
+                                        <option value="PhD">PhD</option>
+                                        <option value="Other Doctorate">Other Doctorate</option>
+                                    </optgroup>
+                                    <!-- others can be write -->
+                                    <optgroup label="Others">
+                                        <option value="Other">Other</option>
+                                    </optgroup>
+                                    <!-- input for other field
+                                      -->
+                                </select>
+                                <label for="floatingSelect">Heigher Qualification <span
+                                        class="text-red-500">*</span></label>
+                                <div class="error" id="heigherQualificationError"></div>
+                            </div>
+                            <!-- ug degree -->
+                            <div class="form-group mt-4">
+                                <input type="text" id="ugDegree" name="ugDegree" placeholder=" ">
+                                <label for="ugDegree">U.G Degree </label>
+                                <!-- <div class="error" id="ugDegreeError"></div> -->
+                            </div>
+                            <!-- Ug college -->
+                            <div class="form-group mt-4">
+                                <input type="text" id="ugCollege" name="ugCollege" placeholder=" ">
+                                <label for="name">U.G College </label>
+                                <!-- <div class="error" id="ugDegreeError"></div> -->
+                            </div>
+                            <!-- school  -->
+                            <div class="form-group mt-4">
+                                <input type="text" id="school" name="school" placeholder=" ">
+                                <label for="name">School </label>
+                                <!-- <div class="error" id="schoolError"></div> -->
+                            </div>
+                        </div>
+                        <!-- Professional Details -->
+                        <div class="form-section" id="professionalDetails">
+                            <h2>Professional Details</h2>
+                            <!-- Employment Type Dropdown -->
+                            <div class="form-groups my-3">
+                                <select id="employedIn" class="form-select" name="employedIn" required>
+                                    <option value="null" selected>Select Employment Type</option>
+                                    <option value="government">Government/PSU</option>
+                                    <option value="private">Private</option>
+                                    <option value="business">Business</option>
+                                    <option value="defence">Defence</option>
+                                    <option value="selfEmployed">Self Employed</option>
+                                    <option value="notWorking">Not Working</option>
+                                </select>
+                                <label for="floatingSelect">Select Employment Type <span
+                                        class="text-red-500">*</span></label>
+                                <div class="error" id="employedInError"></div>
+                            </div>
+                            <!-- Occupation Dropdown -->
+                            <div class="form-groups my-3">
+                                <select id="occupation" class="form-select" name="occupation" required>
+                                    <option value="null" selected>Occupation</option>
+                                </select>
+                                <label for="floatingSelect">Occupation: <span class="text-red-500">*</span></label>
+                                <div class="error" id="occupationError"></div>
+                            </div>
+
+                            <!-- Exception Input Field (Hidden initially) -->
+                            <!-- <div class="exception-input form-group " id="exceptionInput" >
+                                <input type="text" id="exception" placeholder="Enter occupation...">
+                                <div class="error" id="exceptionError"></div>
+                            </div> -->
+                            <!-- annual income -->
+                            <div class="form-groups my-3">
+                                <select class="form-select" id="annualIncomexx" name="annualIncome" required>
+                                    <option value="null" selected>Annual Income</option>
+                                    <option value="0">No Income</option>
+                                    <option value="100000">Rs. 0 - 1 Lakh</option>
+                                    <option value="200000">Rs. 1 - 2 Lakh</option>
+                                    <option value="300000">Rs. 2 - 3 Lakh</option>
+                                    <option value="400000">Rs. 3 - 4 Lakh</option>
+                                    <option value="500000">Rs. 4 - 5 Lakh</option>
+                                    <option value="750000">Rs. 5 - 7.5 Lakh</option>
+                                    <!-- option for next -->
+                                    <option value="850000">Rs. 7.5 - 8.5 Lakh</option>
+                                    <option value="950000">Rs. 8.5 - 9.5 Lakh</option>
+                                    <option value="1000000">Rs. 9.5 - 10 Lakh</option>
+                                    <option value="2000000">Rs. 10 - 20 Lakh</option>
+                                    <option value="3500000">Rs. 25 - 35 Lakh</option>
+                                    <option value="5000000">Rs. 35 - 50 Lakh</option>
+                                    <option value="7000000">Rs. 50 - 70 Lakh</option>
+                                    <option value="10000000">Rs. 70 Lakh - above</option>
+                                </select>
+                                <label for="floatingSelect">Annual Income <span class="text-red-500">*</span></label>
+                                <div class="error" id="annualIncomexxError"></div>
+                            </div>
+                            <!-- Country  -->
+                            <div class="form-groups my-3">
+                                <select class="form-select country form-select" aria-label="Default select example"
+                                    onchange="loadStates()" name="country" id="country" required>
+                                    <option value="null" selected>Select Country</option>
+                                </select>
+                                <label for="floatingSelect">Select Country<span class="text-red-500">*</span>
+                                </label>
+                                <div class="error" id="countryError"></div>
+                            </div>
+                            <!-- State -->
+                            <div class="form-groups my-3 ">
+                                <select class="form-select state sameBgColor" aria-label="Default select example"
+                                    onchange="loadCities()" required name="state" id="state">
+                                    <option selected>Select State </option>
+                                </select>
+                                <label for="floatingSelect">Select State<span class="text-red-500">*</span>
+                                </label>
+                                <div class="error" id="stateError"></div>
+                            </div>
+                            <!-- City -->
+                            <div class="form-groups my-3">
+                                <select class="form-select city" aria-label="Default select example" required
+                                    name="city" id="city">
+                                    <option selected>Select City</option>
+                                </select>
+                                <label for="floatingSelect">Select City <span class="text-red-500">*</span></label>
+                                <div class="error" id="cityError"></div>
+                            </div>
+                            <!-- Home Town input  -->
+                            <div class="form-group">
+                                <input type="text" id="homeTown" name="homeTown" placeholder=" ">
+                                <label for="employedIn">Home Town</label>
+                            </div>
+                        </div>
+                        <!-- HoroScope Details  -->
+                        <div class="form-section" id="horoscope">
+                            <h2>HoroScope Details</h2>
+                            <!-- Horoscope Dosh -->
+                            <div class="form-groups mt-3 mb-0">
+                                <select class="form-select" id="astrologicalDosh" name="astrologicalDosh">
+                                    <option value="Not set" selected hidden>Dosh</option>
+                                    <option value="Mangalik">Mangalik</option>
+                                    <option value="Non Mangalik">Non Mangalik</option>
+                                    <option value="Anshik Mangalik">Anshik Mangalik</option>
+                                </select>
+                                <label for="floatingSelect">Dosh </label>
+                            </div>
+                            <!-- Astrological sign -->
+                            <div class="form-groups mt-3">
+                                <select class="form-select" id="astrologicalSign" name="astrologicalSign">
+                                    <option value="Not set" selected hidden>Astrological Sign</option>
+                                    <option value="Aries">Aries</option>
+                                    <option value="Taurus">Taurus</option>
+                                    <option value="Gemini">Gemini</option>
+                                    <option value="Cancer">Cancer</option>
+                                    <option value="Leo">Leo</option>
+                                    <option value="Virgo">Virgo</option>
+                                    <option value="Libra">Libra</option>
+                                    <option value="Scorpio">Scorpio</option>
+                                    <option value="Sagittarius">Sagittarius</option>
+                                    <option value="Capricorn">Capricorn</option>
+                                    <option value="Aquarius">Aquarius</option>
+                                    <option value="Pisces">Pisces</option>
+                                    <option value="Not set" selected hidden>Not set</option>
+                                </select>
+                                <label for="floatingSelect">Astrological Sign </label>
+                            </div>
+                            <!-- Gotra -->
+                            <div class="form-group mt-3">
+                                <input type="text" id="gotra" name="gotra" placeholder=" ">
+                                <label for="gotra">Gotra</label>
+                            </div>
+                            <!-- Star -->
+                            <div class="form-group mt-3">
+                                <input type="text" id="star" name="star" placeholder=" ">
+                                <label for="star">Star</label>
+                            </div>
+                            <!-- Time Of Birth -->
+                            <div class="form-group mt-3">
+                                <input type="time" id="timeOfBirth" name="timeOfBirth" step="1">
+                                <label for="timeOfBirth">Time of Birth</label>
+                            </div>
+                            <!-- horoscope Date of Birth -->
+                            <div class="form-groups my-3">
+                                <input type="date" class="form-select" id="horoscopedob" name="horoscopedob">
+                                <label for="horoscopedob">Date of Birth</label>
+                                <div class="error" id="horoscopedobError"></div>
+                            </div>
+                        </div>
+                        <!-- About us section  -->
+                        <div class="form-section" id="aboutus">
+                            <h2>About Us</h2>
+                            <!-- About us -->
+                            <div class="form-group mt-3">
+                                <!-- <label for="aboutUs">About Us</label> -->
+                                <textarea id="aboutUs" name="aboutMe" rows="6"></textarea>
+                            </div>
+                        </div>
+                        <!-- Family Details -->
+                        <div class="form-section" id="familyDetails">
+                            <h2>Family Details</h2>
+                            <!-- Family type -->
+                            <div class="form-groups mt-3 mb-0">
+                                <select class="form-select" id="familyType" name="familyType">
+                                    <option value="Not set" selected hidden>Family Type</option>
+                                    <option value="nuclear">Nuclear</option>
+                                    <option value="joint">Joint</option>
+                                    <option value="extended">Extended</option>
+                                </select>
+                                <label for="floatingSelect">Family Type </label>
+                            </div>
+                            <!-- Div for the father and mother -->
+                            <div class="d-flex flex-row justify-between gap-3 mt-0">
+                                <!-- Father's occupation -->
+                                <div class="form-groups my-3 w-1/2">
+                                    <select class="form-select" id="fatherOccupation" name="fatherOccupation">
+                                        <option value="Not set" selected hidden>Father's Occupation</option>
+                                        <option value="Business/Enterpreneur">Business/Enterpreneur</option>
+                                        <option value="Private-Service">Private-Service</option>
+                                        <option value="Govt./PSU-Service">Govt./PSU-Service</option>
+                                        <option value="Agriculture">Agriculture</option>
+                                        <option value="Army/Armed Forces">Army/Armed Forces</option>
+                                        <option value="Civil Services">Civil Services</option>
+                                        <option value="Retired">Retired</option>
+                                        <option value="Not Employed">Not Employed</option>
+                                        <option value="Expired">Expired</option>
+                                    </select>
+                                    <label for="floatingSelect">Father's Occupation </label>
+                                </div>
+                                <!-- Mother's occupation -->
+                                <div class="form-groups my-3 w-1/2">
+                                    <select class="form-select" id="motherOccupation" name="motherOccupation">
+                                        <option value="Not set" selected hidden>Mother's Occupation</option>
+                                        <option value="Business/Enterpreneur">Business/Enterpreneur</option>
+                                        <option value="Private-Service">Private-Service</option>
+                                        <option value="Govt./PSU-Service">Govt./PSU-Service</option>
+                                        <option value="Agriculture">Agriculture</option>
+                                        <option value="Army/Armed Forces">Army/Armed Forces</option>
+                                        <option value="Civil Services">Civil Services</option>
+                                        <option value="Retired">Retired</option>
+                                        <option value="House Wife">House Wife</option>
+                                        <option value="Teacher">Teacher</option>
+                                        <option value="Expired">Expired</option>
+                                    </select>
+                                    <label for="floatingSelect">Mother's Occupation </label>
+                                </div>
+                            </div>
+                            <!-- Flex div for brother and sister -->
+                            <div class="d-flex flex-row justify-between gap-3">
+                                <!-- Brother count -->
+                                <div class="form-groups  w-1/2">
+                                    <select class="form-select" id="brotherCount" name="brotherCount">
+                                        <option value="0" selected hidden> No. of Brothers</option>
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="3+">3+</option>
+                                    </select>
+                                    <label for="floatingSelect"> No. of Brothers </label>
+                                    <div class="error" id="brotherCountError"></div>
+                                </div>
+                                <!-- sister count -->
+                                <div class="form-groups  w-1/2">
+                                    <select class="form-select" id="sisterCount" name="sisterCount">
+                                        <option value="0" selected hidden>No. of Sisters</option>
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="3+">3+</option>
+                                    </select>
+                                    <label for="floatingSelect"> No. of Sisters </label>
+                                </div>
+                            </div>
+                            <!-- Family lives in -->
+                            <div class="form-group mt-0">
+                                <input type="text" id="familyLivesIn" name="familyLivesIn" placeholder=" ">
+                                <label for="name">Family Lives In</label>
+                                <!-- <div class="error" id="familyLivesInError"></div> -->
+                            </div>
+                            <!-- contact address -->
+                            <div class="form-group mt-3">
+                                <input type="text" id="contactAddress" name="contactAddress" placeholder=" ">
+                                <label for="contactAddress">Contact Address</label>
+                                <!-- <div class="error" id="contactAddressError"></div> -->
+                            </div>
+                            <!-- About Family -->
+                            <div class="form-group mt-3">
+                                <textarea id="aboutFamily" name="aboutFamily" rows="1" placeholder=" "></textarea>
+                                <label class="form-label" for="aboutFamily">About Family</label>
+                                <div class="error" id="aboutFamilyError"></div>
+                            </div>
+
+                        </div>
+                        <!-- Contact Details -->
+                        <div class="form-section" id="contactDetails">
+                            <h2>Account Details</h2>
+                            <!-- Emails -->
+                            <div class="form-group mt-3">
+                                <input type="email" id="email" name="email" placeholder=" " required>
+                                <label for="email">Email</label>
+                                <div class="error" id="emailError"></div>
+                            </div>
+                            <!-- Phone Number -->
+                            <div class="form-group">
+                                <input class="mt-2" type="text" id="phone" name="phone" placeholder=" " required>
+                                <label for="phone">Phone Number</label>
+                                <div class="error" id="phoneError"></div>
+                            </div>
+                            <!-- Send otp with error  -->
+                            <div class="d-flex flex-row justify-between gap-3">
+                                <!-- send otp-->
+                                <div class="form-group w-1/2">
+                                    <button type="button" id="sendOtpButton" class="btn btn-primary w-full mt-2">Send
+                                        OTP</button>
+                                </div>
+                                <div class="error w-1/2 text-[10px]" id="otpError"></div>
+                            </div>
+                            <!-- Error input and the verify the otp -->
+                            <div class="d-flex  flex-row justify-between gap-2">
+                                <!-- for input the otp in field -->
+                                <div class="form-group w-full mt-2">
+                                    <input class="" type="text" id="otpInput" name="otp" placeholder=" Enter OTP "
+                                        disabled>
+                                </div>
+                                <!-- Button for verification -->
+                                <button type="button" id="verifyOtpButton" class="btn btn-danger mt-2 w-1/4 text-[14px]"
+                                    disabled>Verify
+                                    OTP</button>
+                            </div>
+                            <!-- make a password -->
+                            <div class="form-group mt-2">
+                                <input type="password" id="password" name="password" required>
+                                <label for="password">Create a Password <span class="text-red-500">*</span></label>
+                                <div class="error" id="passwordError"></div>
+                            </div>
+                        </div>
+                        <!-- BUTTONS GROUPS  -->
+                        <div class="button-group">
+                            <button type="button" class="prev-btn" id="prevButton" disabled>Previous</button>
+                            <button type="button" id="nextButton">Next</button>
+                            <!-- <button type="button" id="skipButton">Skip for Now</button> -->
+                            <button type="submit" id="submitButton" style="display: none;">Submit</button>
+                        </div>
+                        <div id="formSuccess" class="alert alert-success mt-3 d-none" role="alert"></div>
+                        <!-- Error Alert -->
+                        <div id="formError" class="alert alert-danger mt-3 d-none" role="alert"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cards for Suggestion for signUp -->
+    <section class="signup  bg-light pb-4 py-8 mt-4">
+        <div class="container-sm">
+            <!-- HEading -->
+            <div class="text-center my-5">
+                <h1 class="fs-1">Steps to find Your <span class="text-primary">Shathi</span></h1>
+                <hr / class="w-25 m-auto text-primary ">
+            </div>
+
+            <div class="row">
+                <!-- card 1 -->
+                <div class="col-sm-6 mb-3 mb-sm-0 col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <i class="fa-solid fa-wind text-danger fs-3"></i>
+                            <h5 class="card-title mt-2 fw-semibold fs-4"><span class="text-primary">01.</span>Sign <span
+                                    class="text-primary">Up</span></h5>
+                            <p class="card-text">Very easy to signed up with some basic details.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- card 2 -->
+                <div class="col-sm-6 mb-3 mb-sm-0 mt-sm-3 mt-lg-0 col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <i class="fa-solid fa-people-pulling fs-3 text-danger"></i>
+                            <h5 class="card-title fw-semibold mt-2 fs-4"><span class="text-primary">02.</span>Find <span
+                                    class="text-primary">Shathi</span></h5>
+                            <p class="card-text">Find Shathi with our advanced Filter Features.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- card 3 -->
+                <div class="col-sm-6 mb-3 mb-sm-0 col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <i class="fa-solid fa-clipboard-list fs-3 text-danger"></i>
+                            <h5 class="card-title fw-semibold mt-2 fs-4"><span class="text-primary">03.</span>Send <span
+                                    class="text-primary">Interest</span></h5>
+                            <p class="card-text ">Send Interest and do conversation with authentic <span
+                                    class="text-primary ">Shathi.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <a href="#" class="btn btn-primary col-lg-2 col-12 mt-3 ml-0 py-md-2 py-sm-2 py-lg-2 py-4 fs-5 ">Start
+                    Tour Journey Today !</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section for Now chat for free -->
+    <div class="container-sm">
+        <div class="row d-flex flex-row items-center justify-between mt-4">
+            <!-- Image part -->
+            <div class="col-md-6 image">
+                <img src="../images/free-chat-removebg-preview.png" alt="chat" class="img-fluid">
+            </div>
+            <!-- Content left side part -->
+            <div class="col-md-6 d-flex flex-col items-start text">
+                <h1 class="text-center mb-4 fs-2">Now chat for free with <span class="text-primary">Shathi</span></h1>
+                <p class="text-center mb-2 fs-6 para-graph">Get the chance to meet someone you've always wanted to meet,
+                    and to find a connection that's truly special.</p>
+                <a id="clickToDisplayForm" href="#" class="btn btn-primary px-4 text-xl  mt-3">Chat Now For Free !</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section for the carausal  -->
+    <div id="carouselExampleIndicators" class="carousel slide mt-4">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../images/home_back.jpg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="../images/1731436635094-bg (1).jpeg" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="../images/1731760738211-focused-young-developer-coding-late-in-office-writing-script-shown-on-computer-monitors-serious-handsome-coder-programmer-hacker-programming-developi-MBW9FG.jpg"
+                    class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <!-- Bootstrap bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <!-- Js LINKED  -->
+    <script src="../js/index.js"></script>
+    <script src="../js/formInportant.js"></script>
+    <script>
+
+        // Function to validate form inputs
+
+
+
+
+        $(document).ready(function () {
+
+
+            // Dat eof birth varification
+            document.getElementById('dob').addEventListener('change', validateAge);
+            document.getElementById('gender').addEventListener('change', validateAge);
+
+            function validateAge() {
+                const gender = document.getElementById('gender').value;
+                const dob = document.getElementById('dob').value;
+                const genderError = document.getElementById('genderError');
+                const dobError = document.getElementById('dobError');
+
+                // Clear previous error messages
+                genderError.textContent = "";
+                dobError.textContent = "";
+
+                // Exit if no gender or date of birth is selected
+                if (!gender || !dob) {
+                    return;
+                }
+
+                // Calculate age
+                const birthDate = new Date(dob);
+                const today = new Date();
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const monthDiff = today.getMonth() - birthDate.getMonth();
+                const dayDiff = today.getDate() - birthDate.getDate();
+
+                if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+                    age--;
+                }
+
+                let minAge = 0;
+                if (gender === "Male") {
+                    minAge = 21;
+                } else if (gender === "Female") {
+                    minAge = 18;
+                } else {
+                    // No validation required for "Others"
+                    return;
+                }
+
+                // Display error if age is less than the required minimum
+                if (age < minAge) {
+                    dobError.textContent = `Minimum age for ${gender} is ${minAge}. Please select a valid date of birth.`;
+                    dobError.classList.add('text-red-500');
+                }
+            }
+
+
+            // Mapping of employment types to occupations
+            const occupationMapping = {
+                government: ["Civil Servant", "Government Officer", "PSU Employee", "Bank Officer", "RBI Officer", "Other"],
+                private: ["Corporate Employee", "Manager", "Software Engineer", "Investment Banker", "Financial Analyst", "Banker", "Risk Manager", "Loan Officer", "Other"],
+                business: ["Business Owner", "Entrepreneur", "Franchise Owner", "Other"],
+                defence: ["Army Officer", "Navy Officer", "Air Force Officer", "Other"],
+                selfEmployed: ["Freelancer", "Consultant", "Contractor", "Other"],
+                notWorking: ["Student", "Homemaker", "Retired", "Other"]
+            };
+
+            // Event listener for when the "Employed In" dropdown changes
+            document.getElementById("employedIn").addEventListener("change", function () {
+                const selectedEmployedIn = this.value;
+                const occupationDropdown = document.getElementById("occupation");
+                const exceptionInput = document.getElementById("exceptionInput");
+
+                // Clear previous occupation options
+                occupationDropdown.innerHTML = '<option value="">Occupation</option>';
+
+                // Disable the occupation dropdown if no "Employed In" is selected
+                if (!selectedEmployedIn) {
+                    occupationDropdown.disabled = true;
+                    exceptionInput.style.display = "none";
+                    // Text the error message
+                    document.getElementById("occupationError").textContent =
+                        "Please select an employment type first.";
+                    document.getElementById("occupationError").classList.add("text-red-500");
+                    return;
+                }
+
+                // Enable the occupation dropdown if an "Employed In" is selected
+                occupationDropdown.disabled = false;
+
+                // Hide the exception input by default
+                // exceptionInput.style.display = "none";
+
+                // If the selected "Employed In" category has a mapping, update the "Occupation" dropdown
+                if (occupationMapping[selectedEmployedIn]) {
+                    occupationMapping[selectedEmployedIn].forEach(function (occupation) {
+                        const option = document.createElement("option");
+                        option.value = occupation;
+                        option.textContent = occupation;
+                        occupationDropdown.appendChild(option);
+                    });
+                }
+            });
+
+            // Event listener for when the "Occupation" dropdown changes
+            // document.getElementById("occupation").addEventListener("change", function () {
+            //     const selectedOccupation = this.value;
+            //     const exceptionInput = document.getElementById("exceptionInput");
+
+            //     // Show the exception input field if "Other" is selected
+            //     if (selectedOccupation === "Other") {
+            //         exceptionInput.style.display = "block";
+            //     } else {
+            //         exceptionInput.style.display = "none";
+
+            //     }
+            // });
+            // Event listener for when the "exception" input is typed into
+            // document.getElementById("exception").addEventListener("input", function () {
+            //     const inputField = this;
+
+            //     // Check if the field is empty
+            //     if (inputField.value.trim() === "") {
+            //         inputField.classList.remove("success");
+            //         inputField.classList.remove("");
+            //         inputField.classList.add("error");
+            //         inputField.getAttribute('required');
+            //     } else {
+            //         inputField.classList.remove("error");
+            //         inputField.classList.remove("exception-input");
+            //         inputField.classList.add("success");
+            //         // Remove the equire attribute
+            //         inputField.removeAttribute('required');
+            //     }
+            // });
+
+            // Form 
+            $('#clickToDisplayForm').click(function () {
+                // Show the form
+                $('#form-div').removeClass('d-none');
+                $('#clickToDisplayForm').addClass('hide');
+                $('#left-content').addClass('hide');
+
+            });
+
+            // function clickToDisplay() {
+            //     console.log('Click to display');
+            //     $('#form-container').removeClass('d-none');
+            // }
+            // Add event listener to maintain "filled" state
+            const selects = document.querySelectorAll('.form-select');
+            selects.forEach((select) => {
+                select.addEventListener('change', () => {
+                    if (select.value) {
+                        select.setAttribute('data-filled', 'true');
+                    } else {
+                        select.removeAttribute('data-filled');
+                        // Dynamic id attribute error showing
+                        // text field in the error div
+
+                    }
+                });
+            });
+            // Multi- level Form elements
+            const sections = $(".form-section");
+            let currentSection = 0;
+
+            function showSection(index) {                   // 0 is in the index
+                sections.removeClass("active");
+                sections.eq(index).addClass("active");
+                $("#prevButton").prop("disabled", index === 0);
+                $("#nextButton").toggle(index < sections.length - 1);
+                $("#submitButton").toggle(index === sections.length - 1);
+            }
+
+            function validateSection(index) {
+                let isValid = true;
+                sections.eq(index).find(".error").text("");
+
+                sections.eq(index).find("input[required], select[required]").each(function () {
+                    const input = $(this);
+                    // console.log('cu', input.val());
+                    const value = input.val();
+                    const id = input.attr("id");
+
+                    console.log("value is : ", value);
+
+                    // Basic validation for required fields
+                    if (input.attr("required")) {
+                        if (input.attr("required") && value === "" || value === "null") {
+                            $(`#${id}Error`).text("This field is required.");
+                            isValid = false;
+                        }
+                    }
+                    if (value === "" || value === "null") {
+                        $(`#${id}Error`).text("This field is required.");
+                        isValid = false;
+                    }
+                    if (id === "gender" && (value === "null" || value === "")) {
+                        $(`#${id}Error`).text("Please select a valid gender.");
+                        isValid = false;
+                    }
+                    if (id === "phone" && value !== "" && !/^[0-9]{10}$/.test(value)) {
+                        $(`#${id}Error`).text("Phone number must be 10 digits.");
+                        isValid = false;
+                    }
+
+                    if (id === "email" && value !== "" && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+                        $(`#${id}Error`).text("Please enter a valid email address.");
+                        isValid = false;
+                    }
+                    // if (password != confirmPassword) {
+                    //     $("#passwordError").text("Passwords do not match.");
+                    //     isValid = false;
+                    // }
+                    if (id === "annualIncomexx" && value === "null") {
+                        console.log('from annuIncome')
+                        $(`#${id}Error`).text("Please select your annual income.");
+                        isValid = false;
+                    }
+
+                });
+
+                return isValid;
+            }
+
+
+            // 
+
+
+
+            $("#nextButton").on("click", function () {
+                if (validateSection(currentSection)) {
+                    currentSection++;
+                    showSection(currentSection);
+                }
+            });
+
+            $("#prevButton").on("click", function () {
+                currentSection--;
+                showSection(currentSection);
+            });
+
+            showSection(currentSection);
+
+
+            const sendOtpButton = document.getElementById("sendOtpButton");
+            const resendOtpButton = document.createElement("button");
+            const otpInput = document.getElementById("otpInput");
+            const verifyOtpButton = document.getElementById("verifyOtpButton");
+            const otpError = document.getElementById("otpError");
+            let timer;
+
+            // Initial states
+            resendOtpButton.id = "resendOtpButton";
+            resendOtpButton.className = "btn btn-secondary mt-2 w-full";
+            resendOtpButton.style.display = "none";
+            resendOtpButton.innerText = "Resend OTP";
+            sendOtpButton.parentElement.appendChild(resendOtpButton);
+
+            // Send OTP handler
+            sendOtpButton.addEventListener("click", async () => {
+                const phone = document.getElementById("phone").value;
+                if (!phone) {
+                    otpError.innerText = "Phone number is required.";
+                    return;
+                }
+
+                try {
+                    const response = await fetch("/send-otp", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ phone }),
+                    });
+
+                    const result = await response.json();
+                    if (response.ok) {
+                        otpError.innerText = "OTP sent successfully!";
+                        startTimer(30);
+                        otpInput.disabled = false;
+                        verifyOtpButton.disabled = false;
+                        sendOtpButton.disabled = true;
+                        resendOtpButton.style.display = "none";
+                    } else {
+                        otpError.innerText = result.error || "Failed to send OTP.";
+                    }
+                } catch (error) {
+                    otpError.innerText = "An error occurred. Please try again.";
+                }
+            });
+
+            // Resend OTP handler
+            resendOtpButton.addEventListener("click", async () => {
+                sendOtpButton.click();
+            });
+
+            // Timer function
+            function startTimer(seconds) {
+                let remaining = seconds;
+                otpError.innerText = `You can resend OTP in ${remaining} seconds.`;
+                resendOtpButton.style.display = "none";
+
+                timer = setInterval(() => {
+                    remaining--;
+                    if (remaining <= 0) {
+                        clearInterval(timer);
+                        otpError.innerText = "";
+                        resendOtpButton.style.display = "block";
+                    } else {
+                        otpError.innerText = `You can resend OTP in ${remaining} seconds.`;
+                    }
+                }, 1000);
+            }
+
+            // Verify OTP handler
+            verifyOtpButton.addEventListener("click", async () => {
+                const phone = document.getElementById("phone").value;
+                const otp = otpInput.value;
+
+                if (!otp) {
+                    otpError.innerText = "Please enter the OTP.";
+                    return;
+                }
+
+                try {
+                    const response = await fetch("/verify-otp", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ phone, otp }),
+                    });
+
+                    const result = await response.json();
+                    if (response.ok) {
+                        otpError.innerText = "OTP verified successfully!";
+                        otpInput.disabled = true;
+                        verifyOtpButton.disabled = true;
+                        resendOtpButton.style.display = "none";
+                    } else {
+                        otpError.innerText = result.error || "Failed to verify OTP.";
+                    }
+                } catch (error) {
+                    otpError.innerText = "An error occurred. Please try again.";
+                }
+            });
+
+            // Submit the Form Finally
+            $("#multiStepForm").on("submit", function (e) {
+                e.preventDefault();
+
+
+
+                if ($("#submitButton").is(":disabled")) {
+                    alert("Please verify OTP before submitting the form.");
+                } else {
+                    // Proceed with form submission
+                    $.ajax({
+                        url: '/submit-form', // Replace with your form submission endpoint
+                        method: 'POST',
+                        data: $(this).serialize(),
+                        success: function (response) {
+                            // alert("Form submitted successfully!");
+                            // Hide the error alert if visible
+                            $('#formError').addClass('d-none');
+
+                            $('#formSuccess')
+                                .text("You are successfully Registered. Redirecting for Login...")
+                                .removeClass('d-none');
+                            // Redirect to the Dashboard
+                            setTimeout(function () { window.location.href = "/login"; }, 1000); // Redirect after 1 seconds
+                        },
+                        error: function (xhr) {
+                            // Hide the success alert if visible
+                            $('#formSuccess').addClass('d-none');
+
+                            const error = xhr.responseJSON.error || 'An unexpexted error occurred'
+                            $('#formError')
+                                .text("Error: " + error)
+                                .removeClass('d-none');
+                        }
+                    });
+                }
+            });
+
+            // Modal For Login
+            document.getElementById("loginForm").addEventListener("submit", function (e) {
+                // e.preventDefault();
+                const email = document.getElementById("email").value.trim();
+                const password = document.getElementById("password").value.trim();
+
+                if (!email || !password) {
+                    document.getElementById("emailError").textContent = !email ? "Email is required" : "";
+                    document.getElementById("passwordError").textContent = !password ? "Password is required" : "";
+                    return;
+                }
+            });
+
+
+
+            // Validation of annual income
+            $("#annualIncome").on("change", function () {
+                const annualIncome = $(this).val();
+                if (annualIncome) {
+                    // Clear error message if a valid option is selected
+                    $("#annualIncomeError").text("");
+                } else {
+                    // Show error message if no value is selected
+                    $("#annualIncomeError").text("Please select your annual income.");
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>

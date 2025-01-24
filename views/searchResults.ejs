@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Template for matrimonial</title>
+  <link rel="stylesheet" href="../css/match.css">
+</head>
+
+<body>
+    <!-- Grid for users-->
+    <section class=" container-sm mt-[4rem] mb-[4rem] ">
+
+      <div class="container-fluid py-4">
+        <div class="row">
+          <!-- Left Sidebar -->
+          <div class="col-md-3 left-aside">
+            <div class="profile-section">
+              <img src="../../images/1.jpg" alt="Profile Picture"
+                class="img-fluid rounded-circle mb-3 d-flex justify-center" style="width: 80px; height: 80px;">
+              <h5>Hi Suraj!</h5>
+              <p>UVXX7959</p>
+              <a href="#" class="text-primary">Edit Profile</a>
+              <hr>
+              <ul class="list-unstyled">
+                <li><a href="/match" class="d-block py-2">Matches</a></li>
+                <li><a href="/search" class="d-block py-2">Search</a></li>
+                <li><a href="/chat" class="d-block py-2">Chat</a></li>
+                <li><a href="#" class="d-block py-2">Upgrade <span class="badge bg-success">75% Off</span></a></li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Middle Section -->
+          <div class="col-md-6 d-flex justify-content-center flex-wrap middle-section">
+            <!-- d-flex justify-content-center flex-wrap -->
+            <!-- card 1 -->
+            <% if (users && users.length> 0) { %>
+              <!-- <h1>Results:</h1> -->
+
+              <% users.forEach(user=> { %>
+
+                <div class="col-md-12 col-lg-12 mb-3">
+                  <div class="card ">
+                    <!-- image -->
+                    <div class="image" id="Image">
+                     <a href="/shathiProfile/<%= user._id %>">
+                      <img src="<%= user.profileImage %>" class="card-img-top" alt="...">
+                     </a>
+                    </div>
+                    <!-- Edit For Profile Information -->
+                    <div class="card-body bg-secondary-subtle">
+                      <div class="name-age flex items-center justify-center ">
+                        <div class="name">
+                          <h2 class="font-bold text-[20px]">
+                            <%= user.name %> <span>|</span>
+                          </h2>
+                        </div>
+                        <div class="age ml-2">
+                          <h2><%= user.age %></h2>
+                        </div>
+                      </div>
+                      <div class="basic-details flex flex-row justify-between items-center">
+                        <!-- Height -->
+                        <div class="left">
+                          <p class="card-text">Height : <%= Math.floor(user.height / 12) %>' 
+                            <%= user.height % 12 %>"</p>
+                          <p class="card-text"><i class="fa-solid fa-user-graduate"></i>
+                            <%= user.heigherQualification %>
+                          </p>
+                          <p class="card-text"><i class="fa-solid fa-heart"></i>
+                            <%= user.maritalStatus %>
+                          </p>
+                        </div>
+                        <div class="right">
+                          <p class="card-text"><i class="fa-solid fa-location-dot"></i>
+                            <%=user.state%>, <%= user.city %>
+                          </p>
+                          <p class="card-text"><span class="fw-semibold fs-6">Rs.</span>
+                            <%= user.annualIncome %>
+                          </p>
+                          <p class="card-text"><span class="">Family Type: </span>
+                            <%= user.familyType %>
+                          </p>
+                        </div>
+                      </div>
+
+                      <!-- booo -->
+                      <div class="bottom bottom-links my-2">
+                        <!-- Social Icons -->
+                        <div class="social-icons d-flex justify-center">
+                          <!-- Interests, view profile, chats -->
+                          <div class="icon-box d-flex gap-2">
+                            <!-- Send Interest  -->
+                            <a class="bg-success p-3 rounded text-[14px]" href="#"><i
+                                class="fas fa-hand-sparkles pr-1 "></i>send Interest</a>
+                            <!-- Chatting -->
+                            <a class="bg-success p-3 rounded text-[14px]" href="/chat/private/<%= user._id %>"><i
+                                class="fas fa-comments pr-1"></i>Chat</a>
+                            <!-- Calling i.e., to show the contact details -->
+                            <a class="bg-success p-3 rounded text-[14px]" href="#"><i
+                                class="fas fa-phone pr-1"></i>Call</a>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                    <!-- Card-bottom -->
+
+
+
+                    <!-- Shortlist the Card/ Shathi -->
+                    <div class="edit shortlist">
+                      <i class="fa-regular fa-heart absolute right-0 top-0 m-2 p-2 bg-light rounded  <%= currentUser.shortList.includes(user._id) ? 'clicked' : '' %>" "
+                        data-userid="<%= user._id %>"></i>
+                    </div>
+                  </div>
+                </div>
+
+                <% }) %>
+                  <% } else { %>
+                    <h1>No result found</h1>
+                    <% } %>
+          </div>
+
+          <!-- Right Sidebar -->
+          <div class="col-md-3">
+            <div class="benefits-section">
+              <h5 class="text-danger">You are <strong>missing out</strong> on the premium benefits!</h5>
+              <ul class="list-unstyled my-4">
+                <li class="mb-3"><i class="bi bi-person-check me-2"></i>Get up to 3x more profile views</li>
+                <li class="mb-3"><i class="bi bi-telephone me-2"></i>Unlimited voice & video calls</li>
+                <li class="mb-3"><i class="bi bi-eye me-2"></i>Get access to contact details</li>
+                <li class="mb-3"><i class="bi bi-search me-2"></i>Perform unlimited searches</li>
+              </ul>
+              <button class="btn w-100">Upgrade now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- modals For image show -->
+    <!-- <div id="imageModal" class="modal" style="display:none;">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImage">
+  </div>-->
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav d-flex md-d-none lg-d-none">
+      <div class="item">
+        <a href="/">
+          <i class="fas fa-home"></i>
+          <br>Home
+        </a>
+      </div>
+      <div class="item">
+        <a href="/match">
+          <i class="fas fa fa-handshake"></i>
+          <br>Match
+        </a>
+      </div>
+      <div class="item">
+        <a href="#" class="active">
+          <i class="fas fa-search"></i>
+          <br>Search
+        </a>
+      </div>
+      <div class="item">
+        <a href="/chat">
+          <i class="fas fa-comments"></i>
+          <br>Chat
+        </a>
+      </div>
+      <div class="item">
+        <a href="#">
+          <i class="fas fa-arrow-up"></i>
+          <br>Upgrade
+        </a>
+      </div>
+    </div>
+
+
+
+
+    <!-- SCRIPT -->
+    <script>
+      // Checking for window ready 
+      $(document).ready(function () {
+        // const modal = $("#imageModal");
+        // const modalImg = $("#modalImage");
+
+        // // Show modal on image click
+        // $(".card-img-top").on("click", function () {
+        //   modal.show();
+        //   modalImg.attr("src", $(this).attr("src"));
+        // });
+
+        // // Close modal on close button or outside click
+        // $(".close, .modal").on("click", function () {
+        //   modal.hide();
+        // });
+
+        document.querySelectorAll('.fa-heart').forEach((heart) => {
+          heart.addEventListener('click', function () {
+            const shortlistUserId = this.dataset.userid; // Retrieve the user ID
+            console.log(shortlistUserId);
+            const userId = '<%= currentUser._id %>'; // Replace with the logged-in user's ID
+            console.log(userId);
+            fetch('/edit/shortlist', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ userId, shortlistUserId }), // Send data to the backend
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.message.includes('added')) {
+                  this.classList.add('clicked'); // Turn heart red
+                } else {
+                  this.classList.remove('clicked'); // Revert to original
+                }
+                alert(data.message); // Provide feedback to the user
+              })
+              .catch((error) => console.error('Error:', error));
+          });
+        });
+      });
+
+
+      // Click on image buttom redirect to the profile page
+      $("#image").on("click", function () {
+
+        window.location.href = `/profile/${user._id}`;
+      });
+
+      // console.log('data-userid', + data-userid);
+    </script>
+</body>
+
+</html>

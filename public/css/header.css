@@ -1,0 +1,162 @@
+body {
+    font-family: 'Oswald', sans-serif;
+}
+nav {
+    background-color: white;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+    color: black;
+}
+nav a {
+    color: red;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+.logo {
+    font-size: 1.5rem;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: rgba(0, 0, 0, 0.697);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: lightgreen;
+}
+
+.checkbtn {
+    font-size: 30px;
+    cursor: pointer;
+    display: none;
+}
+
+#check {
+    display: none;
+}
+/* responsive */
+
+/* Css for right side div */
+.circle {
+    position: relative;
+}
+.circle img {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 3px solid #198754;
+    transition: all 0.3s;
+    z-index: 1;
+    cursor: pointer;
+}
+/* when click then */
+.dropdown {
+    position: absolute;
+    top: 100%; /* Position below the image */
+    right: 10%;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 180px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+}
+.dropdown li {
+    padding: 8px;
+    cursor: pointer;
+    width: 100%
+    /* max-width: max-content; */
+
+   
+}
+
+.dropdown li:hover {
+    background-color: #f0f0f0;
+}
+
+
+@media (max-width: 768px) {
+    .checkbtn {
+        display: block;
+        order: 1;
+        margin-right: 20px;
+    }
+
+    .aside {
+        display: none;
+    }
+
+    nav {
+        justify-content: space-between;
+    }
+    nav ul {
+        position: fixed;
+        top: 60px;
+        right: 100%;
+        background-color: white;
+        border: 2px solid #198754 ;
+        width: 100%;
+        height: 90vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: flex-end;
+        transition: all 0.3s;
+        border-radius: 10px;
+        border-bottom-right-radius: 20px;
+        z-index: 10000;
+    }
+
+    ul li {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        padding: 10px;
+    }
+
+    ul li a {
+        font-size: 18px !important;
+        display: block;
+        /* margin-left: 2rem; */
+    }
+
+    #check:checked~ul {
+        right: 35%;
+    }
+
+    .logout {
+        position: absolute;
+        top: 80%;
+    }
+    .right-side {
+        display: none;
+    }
+
+}

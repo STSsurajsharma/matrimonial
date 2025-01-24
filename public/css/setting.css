@@ -1,0 +1,299 @@
+label, input {
+    color: #000 !important;
+}
+
+/*  */
+/*  */
+.verification-success {
+    display: none;
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.resend-disabled {
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+/* 
+   */
+/*  */
+
+.account-settings {
+    display: flex;
+    height: 90vh;
+}
+
+.settings-menu {
+    width: 25%;
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.settings-menu h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.settings-menu .active {
+    background-color: #1abc9c !important;
+    color: white;
+    /* font-weight: bold; */
+}
+
+.settings-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.settings-menu .menu-item {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #34495e;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.settings-menu .menu-item:hover {
+    background-color: #1abc9c;
+}
+
+.settings-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.settings-section {
+    display: none;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.4s ease-in-out;
+}
+
+.settings-section.active {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.settings-section h3 {
+    margin-top: 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input,
+select,
+button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.hidden {
+    display: none;
+}
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    padding: 10px 20px;
+    background-color: #34495e;
+    color: white !important;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.tab-btn.active {
+    background-color: #1abc9c;
+}
+
+.tab-btn:hover {
+    background-color: #45a049;
+}
+
+.privacy-content {
+    display: none;
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.4s ease-in-out;
+}
+
+.privacy-content.active {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+select,
+button {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.privacy-content form div {
+    margin-bottom: 10px;
+}
+
+.privacy-content form div label {
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.privacy-content form div .default {
+    font-style: italic;
+    font-weight: 400;
+}
+
+.privacy-content form .photo-heading,
+.phone-visibility {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+
+
+/* Media query for the responsiveness */
+@media (max-width: 525px) {
+
+    /* For screens smaller than 525px */
+    .account-settings {
+        flex-direction: column;
+        align-items: center;
+        /* padding: 20px; */
+    }
+
+    .settings-menu {
+        width: 100%;
+        margin-bottom: 20px;
+        /* margin-top: -25px; */
+    }
+
+    .settings-menu ul {
+        display: flex;
+        flex-direction: row;
+        margin: 0;
+        padding: 0;
+        overflow-x: auto;
+        gap: 4px;
+    }
+
+    .settings-menu.menu-item {
+        margin-bottom: 10px;
+    }
+
+    .settings-menu.menu-item:hover {
+        background-color: #34495e;
+    }
+
+    .settings-content {
+        padding: 0;
+    }
+
+    .settings-section {
+        margin-bottom: 20px;
+        width: 300px;
+    }
+    .settings-section .card {
+        width: 300px;
+    }
+
+    /* Privacy internal css */
+    .tabs {
+        flex-direction: row;
+        gap: 4;
+    }
+
+    .tab-btn {
+        margin-bottom: 10px;
+    }
+
+    .privacy-content {
+        margin-top: 20px;
+    }
+
+    form {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .photo-privacy,
+    .phone-privacy {
+        width: 300px !important;
+        /* background-color: #1abc9c; */
+    }
+
+    button {
+        margin-top: 10px !important;
+    }
+
+    .privacy-content {
+        margin-top: 0;
+    }
+
+}
+
+
+/* Success status for email  */
+#emailMessage .alert {
+    margin-top: 10px;
+}
+
+#emailMessage .alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+#emailMessage .alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}

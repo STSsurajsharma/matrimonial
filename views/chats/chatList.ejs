@@ -1,0 +1,122 @@
+<head>
+    <link rel="stylesheet" href="./../../css/chatList.css">
+
+    <style>
+        .profile-section {
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        .chat-list {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+        }
+        .benefits-section {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .benefits-section .btn {
+            background-color: #dc3545;
+            color: #fff;
+        }
+        .chat-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f1f1;
+        }
+        .chat-item:last-child {
+            border-bottom: none;
+        }
+        .chat-item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        .chat-item .details {
+            flex-grow: 1;
+        }
+        .chat-item .details .name {
+            font-weight: bold;
+        }
+        .chat-item .details .meta {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+
+<body>
+    <%-include('../layouts/header') %>
+
+
+        <section class=" container-sm mt-[6rem] mb-[4rem]">
+
+            <div class="container-fluid py-4">
+                <div class="row">
+                    <!-- Left Sidebar -->
+                    <div class="col-md-3 d-none d-lg-block d-md-block">
+                        <div class="profile-section">
+                            <img src="../../images/1.jpg" alt="Profile Picture" class="img-fluid rounded-circle mb-3" style="width: 80px; height: 80px;">
+                            <h5>Hi Suraj!</h5>
+                            <p>UVXX7959</p>
+                            <a href="#" class="text-primary">Edit Profile</a>
+                            <hr>
+                            <ul class="list-unstyled">
+                                <li><a href="#" class="d-block py-2">Matches</a></li>
+                                <li><a href="#" class="d-block py-2">Activity</a></li>
+                                <li><a href="#" class="d-block py-2">Search</a></li>
+                                <li><a href="#" class="d-block py-2">Messenger</a></li>
+                                <li><a href="#" class="d-block py-2">Upgrade <span class="badge bg-success">75% Off</span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+        
+                    <!-- Middle Section -->
+                    <div class="col-md-6">
+                        <div class="chat-list">
+                            <h5 class="mb-4">My Conversations</h5>
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#">Acceptances</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Interests</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Calls</a>
+                                </li>
+                            </ul>
+                            <div class="chat-item mt-4">
+                                <img src="/path/to/user.jpg" alt="User Profile">
+                                <div class="details">
+                                    <div class="name">Neelam Sharma, 25</div>
+                                    <div class="meta">4' 5" &bull; Adi Andhra &bull; Alampur</div>
+                                </div>
+                                <div class="text-muted">16/11/2024</div>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Right Sidebar -->
+                    <div class="col-md-3 d-none d-lg-block d-md-block">
+                        <div class="benefits-section">
+                            <h5 class="text-danger">You are <strong>missing out</strong> on the premium benefits!</h5>
+                            <ul class="list-unstyled my-4">
+                                <li class="mb-3"><i class="bi bi-person-check me-2"></i>Get up to 3x more profile views</li>
+                                <li class="mb-3"><i class="bi bi-telephone me-2"></i>Unlimited voice & video calls</li>
+                                <li class="mb-3"><i class="bi bi-eye me-2"></i>Get access to contact details</li>
+                                <li class="mb-3"><i class="bi bi-search me-2"></i>Perform unlimited searches</li>
+                            </ul>
+                            <button class="btn w-100">Upgrade now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+</body>

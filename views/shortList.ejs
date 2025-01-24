@@ -1,0 +1,289 @@
+<head>
+    <link rel="stylesheet" href="../css/shortlist.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<%- include('./layouts/header') %>
+
+    <section class=" container-sm mt-[6rem] mb-[4rem] ">
+        <h1 class="text-2xl font-bold text-center mb-6">Shortlisted Profiles</h1>
+        <h1></h1>
+
+
+        <div class="container-fluid py-4">
+            <div class="row">
+                <!-- Left Sidebar -->
+                <div class="col-12 col-md-3 d-none  d-md-block ">
+                    <!-- Inner Part -->
+                    <div class="card custom-card border">
+                        <!-- Image -->
+                        <div class="img cursor-pointer" id="profile-icon">
+                            <img src="<%=currentUser.profileImage %>" class="card-img-top w-full p-0"
+                                alt="Profile Image">
+                        </div>
+                        <!-- Card body -->
+                        <div class="card-body p-3 ">
+                            <!-- Name -->
+                            <div class="card-title borderBottom mt-2 pb-2 ">
+                                <div class="name d-flex flex-col items-center">
+                                    <h5>
+                                        <%= currentUser.name %> | BDS2025
+                                    </h5>
+                                </div>
+                                <!-- Edit perncil -->
+                                <!-- <div class="pencil">
+                                    <a href="#" class="edit-icon p-2 text-info bg-light rounded-md"><i
+                                            class="fas fa-pencil-alt"></i>edit ?</a>
+                                </div> -->
+                            </div>
+                            <!-- Email and phone no -->
+                            <div class="card-data d-flex flex-col items-start borderBottom">
+                                <!-- Emails -->
+                                <div
+                                    class="card-text d-flex flex-row justify-between pb-3 relative pr-0 d-block w-full">
+                                    <!-- For showing the email -->
+                                    <div class="email"><span class="label">Email is : </span>
+                                        <span class="value">
+                                            <%= currentUser.email %>
+                                        </span>
+                                    </div>
+                                    <!-- For showwing the status for email -->
+                                    <div class="status absolute right-0 bottom-0 ">
+                                        <% if (currentUser.isEmailVerified===true) { %>
+                                            <div class="status-2">
+                                                <span class="text-success"> Verified</span>
+                                            </div>
+                                            <% } else { %>
+                                                <div class="status-2">
+                                                    <a href=""><span class="text-danger">Verify Now!</span></a>
+                                                </div>
+
+                                                <% } %>
+                                    </div>
+                                </div>
+                                <!-- End emails -->
+
+                                <!-- Mobile no -->
+                                <div class="card-text d-flex flex-row justify-between mt-2 relative d-block w-full ">
+                                    <!-- For showing the email -->
+                                    <div class="email"><span class="label">Phone No : </span>
+                                        <span class="value">
+                                            <%= currentUser.phone %>
+                                        </span>
+                                    </div>
+                                    <!-- For showwing the status -->
+                                    <div class="status absolute right-0 bottom-0 ">
+                                        <% if (currentUser.isMnoVerified===true) { %>
+                                            <div class="status-2">
+                                                <span class="text-success"> Verified</span>
+                                            </div>
+                                            <% } else { %>
+                                                <div class="status-2">
+                                                    <a href=""><span class="text-danger">Verify Now!</span></a>
+                                                </div>
+                                                <% } %>
+                                    </div>
+                                </div>
+                                <!-- End phone -->
+                            </div>
+                            <!-- Bottom part of the div for search ancher tag  -->
+                            <div class="search pt-2 text-success ">
+                                <div class="btn w-full ">
+                                    <a href="/search">Search <i class="fa-solid fa-search ml-2"></i> </a>
+                                </div>
+                            </div>
+                            <!-- Upgrade Now ! -->
+                            <div class="upgrade text-center">
+                                <a href="/upgrade" class="btn btn-danger w-full ">Upgrade Now!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Middle Section -->
+                <div class="col-md-6 d-flex justify-content-center flex-wrap middle-section">
+                    <!-- d-flex justify-content-center flex-wrap -->
+                    <!-- card 1 -->
+                    <% if (users && users.length> 0) { %>
+                        <!-- <h1>Results:</h1> -->
+
+                        <% users.forEach(user=> { %>
+
+                            <div class="col-md-12 col-lg-12 mb-3">
+                                <div class="card ">
+                                    <!-- image -->
+                                    <div class="image">
+                                        <img src="<%= user.profileImage %>" class="card-img-top" alt="...">
+                                    </div>
+                                    <!-- Edit For Profile Information -->
+                                    <div class="card-body bg-secondary-subtle">
+                                        <div class="name-age flex items-center justify-center ">
+                                            <div class="name">
+                                                <h2 class="font-bold text-[20px]">
+                                                    <%= user.name %> <span>|</span>
+                                                </h2>
+                                            </div>
+                                            <div class="age ml-2">
+                                                <h2>
+                                                    <%= user.age %>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        <div class="basic-details flex flex-row justify-between items-center">
+                                            <div class="left">
+                                                <p class="card-text">Height : <%= user.height %>inch.</p>
+                                                <p class="card-text"><i class="fa-solid fa-user-graduate"></i>
+                                                    <%= user.heigherQualification %>
+                                                </p>
+                                                <p class="card-text"><i class="fa-solid fa-heart"></i>
+                                                    <%= user.maritalStatus %>
+                                                </p>
+                                            </div>
+                                            <div class="right">
+                                                <p class="card-text"><i class="fa-solid fa-location-dot"></i>
+                                                    <%=user.state%>, <%= user.city %>
+                                                </p>
+                                                <p class="card-text"><span class="fw-semibold fs-6">Rs.</span>
+                                                    <%= user.annualIncome %>
+                                                </p>
+                                                <p class="card-text"><span class="">Family Type: </span>
+                                                    <%= user.familyType %>
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <!-- booo -->
+                                        <div class="bottom bottom-links my-2">
+                                            <!-- Social Icons -->
+                                            <div class="social-icons d-flex justify-center">
+                                                <!-- Interests, view profile, chats -->
+                                                <div class="icon-box d-flex gap-2">
+                                                    <!-- Send Interest  -->
+                                                    <a class="bg-success p-3 rounded text-[14px]" href="#"><i
+                                                            class="fas fa-hand-sparkles pr-1 "></i>send Interest</a>
+                                                    <!-- Chatting -->
+                                                    <a class="bg-success p-3 rounded text-[14px]"
+                                                        href="/chat/private/<%= user._id %>"><i
+                                                            class="fas fa-comments pr-1"></i>Chat</a>
+                                                    <!-- Calling i.e., to show the contact details -->
+                                                    <a class="bg-success p-3 rounded text-[14px]" href="#"><i
+                                                            class="fas fa-phone pr-1"></i>Call</a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <!-- Card-bottom -->
+
+
+
+                                    <!-- Shortlist the Card/ Shathi -->
+                                    <div class="edit shortlist">
+                                        <i class="fa-regular fa-heart absolute right-0 top-0 m-2 p-2 bg-light rounded <%= currentUser.shortList.includes(user._id) ? 'clicked' : '' %> "
+                                            data-userid="<%= user._id %>"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <% }) %>
+                                <% } else { %>
+                                    <h1>No result found</h1>
+                                    <% } %>
+                </div>
+
+                <!-- Right Sidebar -->
+                <div class="col-md-3">
+                    <div class="benefits-section">
+                        <h5 class="text-danger">You are <strong>missing out</strong> on the premium benefits!</h5>
+                        <ul class="list-unstyled my-4">
+                            <li class="mb-3"><i class="bi bi-person-check me-2"></i>Get up to 3x more profile views</li>
+                            <li class="mb-3"><i class="bi bi-telephone me-2"></i>Unlimited voice & video calls</li>
+                            <li class="mb-3"><i class="bi bi-eye me-2"></i>Get access to contact details</li>
+                            <li class="mb-3"><i class="bi bi-search me-2"></i>Perform unlimited searches</li>
+                        </ul>
+                        <button class="btn w-100">Upgrade now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- modals For image show -->
+    <!-- <div id="imageModal" class="modal" style="display:none;">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImage">
+</div>-->
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav d-flex md-d-none lg-d-none">
+        <div class="item">
+            <a href="/">
+                <i class="fas fa-home"></i>
+                <br>Home
+            </a>
+        </div>
+        <div class="item">
+            <a href="/match" class="active">
+                <i class="fas fa fa-handshake"></i>
+                <br>Match
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <i class="fas fa-search"></i>
+                <br>Search
+            </a>
+        </div>
+        <div class="item">
+            <a href="/chat">
+                <i class="fas fa-comments"></i>
+                <br>Chat
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <i class="fas fa-arrow-up"></i>
+                <br>Upgrade
+            </a>
+        </div>
+    </div>
+
+
+
+    <!-- SCRIPT -->
+    <script>
+        // Checking for window ready 
+        $(document).ready(function () {
+
+
+            document.querySelectorAll('.fa-heart').forEach((heart) => {
+                heart.addEventListener('click', function () {
+                    const shortlistUserId = this.dataset.userid; // Retrieve the user ID
+                    console.log(shortlistUserId);
+                    const userId = '<%= currentUser._id %>'; // Replace with the logged-in user's ID
+                    console.log(userId);
+                    fetch('/edit/shortlist', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ userId, shortlistUserId }), // Send data to the backend
+                    })
+                        .then((response) => response.json())
+                        .then((data) => {
+                            if (data.message.includes('added')) {
+                                this.classList.add('clicked'); // Turn heart red
+                            } else {
+                                this.classList.remove('clicked'); // Revert to original
+                            }
+                            alert(data.message); // Provide feedback to the user
+                        })
+                        .catch((error) => console.error('Error:', error));
+                });
+            });
+        });
+
+        // console.log('data-userid', + data-userid);
+    </script>

@@ -1,0 +1,85 @@
+<head>
+    <style>
+        .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f8f9fa;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1050;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+
+    /* Ensures it always appears on top */
+}
+
+.bottom-nav .item {
+    text-align: center;
+    padding: 10px 0;
+    flex: 1;
+}
+
+.bottom-nav .item a {
+    color: #6c757d;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.bottom-nav .item a.active {
+    color: #007bff;
+}
+
+.bottom-nav .item i {
+    font-size: 20px;
+}
+
+
+/* MEdia Query for Bottom navigation */
+@media (min-width: 770px) {
+    .bottom-nav {
+        display: none !important;
+    }
+    .left-aside {
+        display: block !important;
+    }
+}
+    </style>
+</head>
+
+
+<body>
+    
+       <!-- Bottom Navigation -->
+       <div class="bottom-nav d-flex md-d-none lg-d-none">
+        <div class="item">
+            <a href="/" class="active">
+                <i class="fas fa-home"></i>
+                <br>Home
+            </a>
+        </div>
+        <div class="item" class="active">
+            <a href="/match">
+                <i class="fas fa fa-handshake"></i>
+                <br>Match
+            </a>
+        </div>
+        <div class="item">
+            <a href="/search">
+                <i class="fas fa-search"></i>
+                <br>Search
+            </a>
+        </div>
+        <div class="item">
+            <a href="/chat">
+                <i class="fas fa-comments"></i>
+                <br>Chat
+            </a>
+        </div>
+        <div class="item">
+            <a href="#">
+                <i class="fas fa-arrow-up"></i>
+                <br>Upgrade
+            </a>
+        </div>
+    </div>
+</body>

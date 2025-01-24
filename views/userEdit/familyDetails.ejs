@@ -1,0 +1,483 @@
+<head>
+    <!-- Style sheets -->
+    <link rel="stylesheet" href="../../css/userEditBasic.css">
+</head>
+
+
+
+<body>
+    <%- include('../layouts/header') %>
+
+
+
+
+        <div class="profile-container">
+
+
+            <!-- Left Section -->
+            <aside class="profile-left">
+                <div class="profile-image">
+                    <img src="<%= user.profileImage %>" alt="User Profile Picture">
+                </div>
+                <h2 class="user-name">
+                    <%= user.name %>
+                </h2>
+                <p class="last-active">
+                    <%= user.city %>, <%= user.state %>, <%= user.country %>
+                                <!-- <br> Last Activity: 4 Seconds Ago</p> -->
+                                <div class="actions">
+                                    <a href="/edit/photo/<%= user._id %>" class="action-btn"><i
+                                            class="fas fa-file-signature fs-5 mr-3 text-primary"></i>
+                                        Edit/Upload Image</a>
+
+                                </div>
+            </aside>
+
+            <!-- Right Section -->
+            <main class="profile-right ">
+                <!-- Basic Details -->
+                <section class="info-section relative">
+                    <h3>Basic Details</h3>
+                    <div class="info-grid">
+                        <!-- Name -->
+                        <div class="info-item"><span class="label ">Name:</span><span class="value">
+                                <%= user.name %>
+                            </span></div>
+                        <!-- date of birth -->
+                        <div class="info-item"><span class="label ">Date of Birth:</span><span class="value">
+                                <%= user.dob %>
+                            </span></div>
+                        <!-- Age -->
+                        <div class="info-item"><span class="label">Age:</span><span class="value blur-text">
+                                <i class="fa-solid fa-lock text-danger"></i>
+                                <%= user.age %> Years.
+                            </span></div>
+                        <!-- Gender -->
+                        <div class="info-item"><span class="label">Gender:</span><span class="value blur-text">
+                                <i class="fa-solid fa-lock text-danger"></i>
+                                <%= user.gender %>
+                            </span></div>
+                        <!-- for whom -->
+                        <div class="info-item"><span class="label">Profile Created For :</span><span class="value">
+                                <%= user.forWhom %>
+                            </span></div>
+
+                        <!-- city -->
+                        <div class="info-item"><span class="label">City:</span><span class="value">
+                                <%= user.city %>
+                            </span></div>
+                        <!-- state -->
+                        <div class="info-item"><span class="label">State:</span><span class="value">
+                                <%= user.state %>
+                            </span></div>
+                        <!-- country -->
+                        <div class="info-item"><span class="label">Country:</span><span class="value">
+                                <%= user.country %>
+                            </span></div>
+                        <!-- Home Town -->
+                        <div class="info-item"><span class="label">Home Town:</span><span class="value">
+                                <%= user.homeTown %>
+                            </span></div>
+                    </div>
+                </section>
+                <!-- Sensitive info  -->
+                <section class="info-section relative">
+                    <!--  -->
+                    <h3>Contact Details</h3>
+                    <div class="info-grid">
+                        <!-- Phone -->
+                        <div class="info-item"><span class="label">Phone:</span><span class="value">
+                                <%= user.phone %>
+                            </span></div>
+                        <!-- Alternate Phone no. -->
+                        <div class="info-item"><span class="label">Alternate Phone:</span><span class="value">
+                                <!-- <%= user.alternatePhone %> -->
+                                <% if (user.alternativePhoneNumber){ %>
+                                    <%= user.alternativePhoneNumber %>
+                                        <%} else {%>
+                                            <span class="value">No details Provided.</span>
+                                            <%}%>
+                            </span></div>
+                        <!-- Emails -->
+                        <div class="info-item"><span class="label">Email id:</span><span class="value">
+                                <%= user.email %>
+                            </span>
+                        </div>
+                        <!-- alternativeEmails -->
+                        <div class="info-item"><span class="label">Alternate Email:</span><span class="value">
+                                <!-- <%= user.alternativeEmail %> -->
+                                <% if (user.alternativeEmail){ %>
+                                    <%= user.alternativeEmail %>
+                                        <%} else {%>
+                                            <span class="value">No details Provided.</span>
+                                            <%}%>
+                            </span>
+                        </div>
+                </section>
+                <!-- Personal Details -->
+                <section class="info-section relative" id="personal-details-section">
+                    <!--  -->
+                    <h3>Personal Details</h3>
+                    <div class="info-grid">
+                        <!-- height -->
+                        <div class="info-item"><span class="label">Height:</span><span class="value">
+                                <%= user.height %>
+                            </span></div>
+                        <!-- Disability. -->
+                        <div class="info-item"><span class="label">Disability:</span><span class="value">
+                                <!-- <%= user.alternatePhone %> -->
+                                <% if (user.disability){ %>
+                                    <%= user.disability %>
+                                        <%} else {%>
+                                            <span class="value">No details Provided.</span>
+                                            <%}%>
+                            </span></div>
+                        <!-- Marital Status -->
+                        <div class="info-item"><span class="label">Marital Status:</span><span class="value">
+                                <%= user.maritalStatus %>
+                            </span>
+                        </div>
+                        <!-- about me -->
+                        <div class="info-item"><span class="label">About Me:</span><span class="value">
+                                <!-- <%= user.alternativeEmail %> -->
+                                <% if (user.aboutMe){ %>
+                                    <%= user.aboutMe %>
+                                        <%} else {%>
+                                            <span class="value">No details Provided.</span>
+                                            <%}%>
+                            </span>
+                        </div>
+                </section>
+                <!-- Religion -->
+                <section class="info-section relative" id="religion-details-section">
+                    <h3>Religion</h3>
+                    <div class="info-grid">
+                        <!-- Religion -->
+                        <div class="info-item"><span class="label">Religion:</span><span class="value blur-text">
+                                <i class="fa-solid fa-lock text-danger mr-2"></i>
+                                <%= user.religion %>
+                            </span></div>
+                        <!-- caste -->
+                        <div class="info-item"><span class="label">Caste:</span><span class="value">
+                                <!-- <%= user.caste %> -->
+                                <% if (user.caste){ %>
+                                    <%= user.caste %>
+                                        <%} else {%>
+                                            <span class="value">No details Provided.</span>
+                                            <%}%>
+
+                            </span></div>
+                        <!-- sub-caste -->
+                        <div class="info-item"><span class="label">Sub-Caste:</span><span class="value">
+                                <!-- <%= user.subCaste %> -->
+                                <% if (user.subCaste){ %>
+                                    <%= user.subCaste %>
+                                        <%} else {%>
+                                            <span class="value">No details Provided.</span>
+                                            <%}%>
+                            </span></div>
+                        <!-- Mther Tongue -->
+                        <div class="info-item"><span class="label">Mother Tongue:</span><span class="value">
+                                <%= user.motherTongue %>
+                            </span>
+                        </div>
+                    </div>
+                </section>
+                <!-- Family Details -->
+                <section class="info-section relative">
+                    <form action="/edit/basic-details/<%= user._id %>#religion-details-section" method="post">
+                        <h3>Family Details <button type="submit"
+                                class="ml-[14rem] absolute right-6 px-2 py-1 bg-primary rounded-md text-white">Save</button>
+                        </h3>
+                        <div class="info-grid">
+                            <!-- Family type -->
+                            <div class="info-item"><span class="label">Family type:</span>
+                                <select class="form-select" id="familyType" name="familyType">
+                                    <option value="<%= user.familyType %>" selected hidden>
+                                        <%= user.familyType %>
+                                    </option>
+                                    <option value="nuclear">Nuclear</option>
+                                    <option value="joint">Joint</option>
+                                    <option value="extended">Extended</option>
+                                </select>
+                            </div>
+                            <!-- Father's Occupation -->
+                            <div class="info-item"><span class="label">Father's Occupation:</span>
+                                <select class="form-select" id="fatherOccupation" name="fatherOccupation">
+                                    <option value="<%= user.fatherOccupation %>" selected hidden>
+                                        <%= user.fatherOccupation %>
+                                    </option>
+                                    <option value="Business/Enterpreneur">Business/Enterpreneur</option>
+                                    <option value="Private-Service">Private-Service</option>
+                                    <option value="Govt./PSU-Service">Govt./PSU-Service</option>
+                                    <option value="Agriculture">Agriculture</option>
+                                    <option value="Army/Armed Forces">Army/Armed Forces</option>
+                                    <option value="Civil Services">Civil Services</option>
+                                    <option value="Retired">Retired</option>
+                                    <option value="Not Employed">Not Employed</option>
+                                    <option value="Expired">Expired</option>
+                                </select>
+                            </div>
+                            <!-- Mother Ocuupation -->
+                            <div class="info-item"><span class="label">Mother's Occupation:</span>
+                                <select class="form-select" id="motherOccupation" name="motherOccupation">
+                                    <option value="<%= user.motherOccupation %>" selected hidden><%= user.motherOccupation %></option>
+                                    <option value="Business/Enterpreneur">Business/Enterpreneur</option>
+                                    <option value="Private-Service">Private-Service</option>
+                                    <option value="Govt./PSU-Service">Govt./PSU-Service</option>
+                                    <option value="Agriculture">Agriculture</option>
+                                    <option value="Army/Armed Forces">Army/Armed Forces</option>
+                                    <option value="Civil Services">Civil Services</option>
+                                    <option value="Retired">Retired</option>
+                                    <option value="House Wife">House Wife</option>
+                                    <option value="Teacher">Teacher</option>
+                                    <option value="Expired">Expired</option>
+                                </select>
+                            </div>
+                            <!-- brother -->
+                            <div class="info-item"><span class="label">Brothers:</span>
+                                <select class="form-select" id="brotherCount" name="brotherCount">
+                                    <option value="<%= user.brotherCount %>" selected hidden> <%= user.brotherCount %></option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="3+">3+</option>
+                                </select>
+                            </div>
+                            <!-- Sister Count -->
+                            <div class="info-item"><span class="label">Sisters:</span><span class="value">
+                                    <%= user.sisterCount %>
+                                </span></div>
+                            <!-- parents address -->
+                            <div class="info-item"><span class="label">parents address:</span><span class="value">
+                                    <!-- <%= user.familyLivesIn %> -->
+                                    <% if (user.familyLivesIn){ %>
+                                        <%= user.familyLivesIn %>
+                                            <%} else {%>
+                                                <span class="value">No details Provided.</span>
+                                                <%}%>
+                                </span></div>
+                            <div class="info-item"><span class="label">Parents Contact Address:</span><span
+                                    class="value">
+                                    <% if (user.contactAddress){ %>
+                                        <%= user.contactAddress %>
+                                            <%} else {%>
+                                                <span class="value">No details Provided.</span>
+                                                <%}%>
+                                </span></div>
+                            <!-- about Family  -->
+                            <div class="info-item"><span class="label">About Family:</span><span class="value">
+                                    <% if (user.aboutFamily){ %>
+                                        <%= user.aboutFamily %>
+                                            <%} else {%>
+                                                <span class="value">No details Provided.</span>
+                                                <%}%>
+
+                                </span></div>
+
+                        </div>
+                    </form>
+                </section>
+                <!-- Educational Details -->
+                <section class="info-section relative">
+                    <h3>Educational Details</h3>
+                    <div class="info-grid">
+                        <!-- Heigher Qualification -->
+                        <div class="info-item"><span class="label">Higher Qualification:</span><span class="value">
+                                <% if (user.heigherQualification){ %>
+                                    <%= user.heigherQualification %>
+                                        <%} else {%>
+                                            <span class="value">No details Provided.</span>
+                                            <%}%>
+                            </span></div>
+                        <!-- Ug Degree -->
+                        <div class="info-item"><span class="label">UG Degree:</span><span class="value">
+                                <% if (user.ugDegree){ %>
+                                    <%= user.ugDegree %>
+                                        <%} else {%>
+                                            <span class="value">No details Provided.</span>
+                                            <%}%>
+                            </span></div>
+                        <!-- Ug college -->
+                        <div class="info-item"><span class="label">UG College:</span><span class="value">
+                                <% if (user.ugCollege){ %>
+                                    <%= user.ugCollege %>
+                                        <%} else {%>
+                                            <span class="value">No details Provided.</span>
+                                            <%}%>
+                            </span>
+                        </div>
+                        <!-- School -->
+                        <div class="info-item"><span class="label">School:</span><span class="value">
+                                <% if (user.school){ %>
+                                    <%= user.School %>
+                                        <%} else {%>
+                                            <span class="value">No details Provided.</span>
+                                            <%}%>
+                            </span>
+                        </div>
+                    </div>
+                </section>
+                <!-- HoroScope -->
+                <section class="info-section relative">
+                    <h3>HoroScope Details</h3>
+                    <div class="info-grid">
+                        <!-- astrologicalDosh -->
+                        <div class="info-item"><span class="label">Dosh:</span><span class="value">
+                                <% if (user.astrologicalDosh){ %>
+                                    <%= user.astrologicalDosh %>
+                                        <%} else {%>
+                                            <span class="value">No details Provided.</span>
+                                            <%}%>
+                            </span></div>
+                        <!-- astrologicalSign -->
+                        <div class="info-item"><span class="label">Rashi:</span><span class="value">
+                                <% if (user.astrologicalSign){ %>
+                                    <%= user.astrologicalSign %>
+                                        <%} else {%>
+                                            <span class="value">No details Provided.</span>
+                                            <%}%>
+                            </span></div>
+                        <!-- Gotra -->
+                        <div class="info-item"><span class="label">Gotra:</span><span class="value">
+                                <% if (user.gotra){ %>
+                                    <%= user.gotra %>
+                                        <%} else {%>
+                                            <span class="value">No details Provided.</span>
+                                            <%}%>
+                            </span></div>
+                        <!-- Star -->
+                        <div class="info-item"><span class="label">Star:</span><span class="value">
+                                <% if (user.star){ %>
+                                    <%= user.star %>
+                                        <%} else {%>
+                                            <span class="value">No details Provided.</span>
+                                            <%}%>
+                            </span></div>
+                        <!-- Time of Birth -->
+                        <div class="info-item"><span class="label">Time Of Birth:</span><span class="value">
+                                <% if (user.timeOfBirth){ %>
+                                    <%= user.timeOfBirth %>
+                                        <%} else {%>
+                                            <span class="value">No details Provided.</span>
+                                            <%}%>
+                            </span></div>
+                    </div>
+                </section>
+                <!-- LifeStyle -->
+                <!-- HoroScope -->
+                <section class="info-section relative">
+                    <h3>Life Style Details</h3>
+                    <div class="info-grid">
+                        <!-- eatinhHabits -->
+                        <div class="info-item"><span class="label">Eating Habits:</span><span class="value">
+                                <% if (user.eatinhHabits){ %>
+                                    <%= user.eatinhHabits %>
+                                        <%} else {%>
+                                            <span class="value">No details Provided.</span>
+                                            <%}%>
+                            </span></div>
+                        <!-- drinkingHabits -->
+                        <div class="info-item"><span class="label">Drinking Habits:</span><span class="value">
+                                <% if (user.drinkingHabits){ %>
+                                    <%= user.drinkingHabits %>
+                                        <%} else {%>
+                                            <span class="value">No details Provided.</span>
+                                            <%}%>
+                            </span></div>
+                        <!-- Smoking habits -->
+                        <div class="info-item"><span class="label">Smoking Habits:</span><span class="value">
+                                <% if (user.smokingHabits){ %>
+                                    <%= user.smokingHabits %>
+                                        <%} else {%>
+                                            <span class="value">No details Provided.</span>
+                                            <%}%>
+                            </span></div>
+
+
+                    </div>
+                </section>
+                <!-- Professional Details -->
+                <section class="info-section relative">
+                    <h3>Professional Details</h3>
+                    <div class="info-grid">
+
+                        <!-- Employed in -->
+                        <div class="info-item"><span class="label">Employement In:</span><span class="value"></span>
+                            <% if (user.employedIn){ %>
+                                <%= user.employedIn %>
+                                    <%} else {%>
+                                        <span class="value">No details Provided.</span>
+                                        <%}%>
+                                            </span>
+                        </div>
+                        <!-- Occupation -->
+                        <div class="info-item"><span class="label">Occupation:</span><span class="value">
+                                <% if (user.occupation){ %>
+                                    <%= user.occupation %>
+                                        <%} else {%>
+                                            <span class="value">No details Provided.</span>
+                                            <%}%>
+                            </span>
+                        </div>
+                        <!-- Annual Income -->
+                        <div class="info-item"><span class="label">Annual Income:</span><span class="value">
+                                <% if (user.annualIncome){ %>
+                                    <%= user.annualIncome %>
+                                        <%} else {%>
+                                            <span class="value">No details Provided.</span>
+                                            <%}%>
+                            </span>
+                        </div>
+                        <!-- Employee -->
+                    </div>
+                </section>
+            </main>
+        </div>
+
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav d-flex md-d-none lg-d-none">
+            <div class="item">
+                <a href="/" class="">
+                    <i class="fas fa-home"></i>
+                    <br>Home
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <i class="fas fa-heart"></i>
+                    <br>Match
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <i class="fas fa-search"></i>
+                    <br>Search
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <i class="fas fa-comments"></i>
+                    <br>Chat
+                </a>
+            </div>
+            <div class="item">
+                <a href="#">
+                    <i class="fas fa-arrow-up"></i>
+                    <br>Upgrade
+                </a>
+            </div>
+        </div>
+
+        <script>
+
+            $(document).ready(function () {
+                setTimeout(function () {
+                    $('#alert-message').fadeOut('slow');
+                }, 1000); // 2000 milliseconds = 2 seconds
+            });
+
+        </script>
+</body>

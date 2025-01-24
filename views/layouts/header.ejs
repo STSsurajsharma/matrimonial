@@ -1,0 +1,83 @@
+<head>
+    <!-- <link rel="stylesheet" href="../css/header.css"> -->
+    <link rel="stylesheet" href="../../css/header.css">
+    <style>
+        .active {
+            color: green;
+        }
+        .ss {
+            color: green;
+        }
+        li a {
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+
+<nav class="fixed top-0 w-full z-[100]">
+    <!-- For hamberger -->
+    <input type="checkbox" id="check">
+    <label for="check" class="checkbtn text-success">
+        <i class="fas fa-bars"></i>
+    </label>
+
+    <!-- Icon  -->
+    <label class="logo fs-4 fw-semibold">Bengali Dream <span class=" text-danger">Shathi</span>
+    </label>
+    <ul class=" ">
+        <li><a class=" <%= activePage === 'home' ? 'active' : '' %> " href="/">Home</a></li>
+        <li><a href="/match" class="<%= activePage === 'match' ? 'active' : '' %>">Match</a></li>
+        <li><a href="/profile" class="<%= activePage === 'profile' ? 'active' : '' %>">Profile</a></li>
+        <!-- <li><a href="/edit">Edit Profile</a></li> -->
+        <!--  -->
+        <li class="d-none listhidden"><a href="#" class="">Account & Setting</a></li>
+        <li class="d-none listhidden"><a href="#" class="">Helps And Supports </a></li>
+        <li class="logout listhidden d-none"><a href="/logout">Logout <i
+                    class="fa-solid fa-right-from-bracket px-2 text-danger"></i> </a></li>
+        <!--  -->
+        <li><a href="/partner-preference" class="<%= activePage === 'partnerPreference' ? 'active' : '' %>">Partner Preference</a></li>
+        <li><a href="/search" class="<%= activePage === 'search' ? 'active' : '' %> ">Search</a></li>
+        <li><a href="/profile-activity" class="<%= activePage === 'profile_activity' ? 'active' : '' %>">Profile Activity </a></li>
+
+        <li><a class=" d-none <%= activePage === 'none' ? 'active' : '' %> " href="/">Home</a></li>
+
+    </ul>
+    <div class="right-side flex flex-row items-center">
+        <div class="circle w-[45px] h-[45px] rounded-circle bg-info-subtle">
+            <img src="../../images/1.jpg" alt=" profile img" class="clickable">
+
+            <ul class="dropdown" style="display: none;">
+                <li class=""><a href="/account-setting">Account & Setting</a></li>
+                <li><a href="#">Helps And Supports</a></li>
+                <li class="logout"><a href="/logout">Logout <i
+                            class="fa-solid fa-right-from-bracket px-2 text-danger"></i> </a></li>
+
+            </ul>
+        </div>
+        <div class="caret ml-2"> <i class="fa-solid fa-caret-down "></i></div>
+    </div>
+
+</nav>
+
+
+<script>
+    $(document).ready(function () {
+        $('.clickable').on('click', function () {
+            $(this).siblings('.dropdown').toggle(); // Toggle the dropdown visibility
+        });
+
+        // Optional: Close dropdown if clicked outside
+        $(document).on('click', function (event) {
+            if (!$(event.target).closest('.circle').length) {
+                $('.dropdown').hide(); // Hide all dropdowns
+            }
+        });
+
+        // optional: Close dropdown if clicked
+        $('.fa-bars').on('click', function (event) {
+            $('.listhidden').removeClass('d-none');
+        });
+    });
+
+</script>

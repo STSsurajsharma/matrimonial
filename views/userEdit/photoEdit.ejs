@@ -1,0 +1,42 @@
+<head>
+    <link rel="stylesheet" href=".././../css/userEdit.css">
+</head>
+
+<body>
+    <!-- Container -->
+    <div class="container">
+        <h2>Edit/Upload Profile Image</h2>
+        <form id="imageUploadForm" action="/edit/upload-image" method="POST" enctype="multipart/form-data">
+            <div class="upload-section">
+                <div class="image-preview">
+                    <img id="imagePreview" src="<%= user.profileImage %>" alt="Image Preview">
+                </div>
+                <label for="imageUpload" class="upload-label">
+                    <i class="fas fa-cloud-upload-alt"></i> Choose Image
+                </label>
+                <input type="file" id="imageUpload" name="profileImage" accept="image/*" hidden>
+                <input type="submit" id="uploadBtn" class="upload-btn" value="Upload Image">
+            </div>
+        </form>
+    </div>
+    <!-- Script js -->
+    <script>
+        const imageUploadInput = document.getElementById('imageUpload');
+        const imagePreview = document.getElementById('imagePreview');
+
+        // Show the selected image in the preview
+        imageUploadInput.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result; // Set the preview to the selected image
+                };
+
+                reader.readAsDataURL(file); // Convert the image to base64 and display it
+            }
+        });
+    </script>
+</body>
